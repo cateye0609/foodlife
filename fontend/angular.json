@@ -18,7 +18,7 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": true,
+            "aot": false,
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -27,16 +27,14 @@
               "src/styles.css",
               "src/assets/css/bootstrap.min.css",
               "src/assets/css/font-awesome.min.css",
-              "src/assets/css/nice-select.css",
               "src/assets/css/slicknav.min.css",
               "src/assets/css/style.css"
             ],
             "scripts": [
               "src/assets/js/jquery.min.js",
               "src/assets/js/bootstrap.min.js",
-              "src/assets/js/jquery.nice-select.min.js",
-              "src/assets/js/jquery.slicknav.js",
               "src/assets/js/main.js",
+              "src/assets/js/jquery.slicknav.js",
               "src/assets/js/mixitup.min.js"
             ]
           },
@@ -75,7 +73,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "foodlife:build",
-			"port": 4300
+			      "port": 4300
           },
           "configurations": {
             "production": {
