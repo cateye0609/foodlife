@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    $(".mobile-menu").slicknav({
+    $('.mobile-menu').slicknav({
       prependTo: '#mobile-menu-wrap',
       allowParentLinks: true
     });
