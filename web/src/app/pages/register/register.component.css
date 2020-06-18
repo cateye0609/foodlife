@@ -1,0 +1,87 @@
+body {
+    height: 100%;
+}
+
+a {
+    color: #FC0254;
+}
+
+a:hover {
+    color: #28a745;
+}
+
+section {
+    width: 100%;
+    background: url('/assets/img/bg.jpg');
+    background-size: cover;
+}
+
+body.register-page {
+    background-color: #f7f9fb;
+}
+
+.register-page .brand {
+    width: 90px;
+    height: 90px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 40px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .05);
+    position: relative;
+    z-index: 1;
+}
+
+.register-page .brand img {
+    width: 100%;
+}
+
+.register-page .card-wrapper {
+    width: 400px;
+}
+
+.register-page .card {
+    border-color: transparent;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .05);
+}
+
+.register-page .card.fat {
+    padding: 10px;
+}
+
+.register-page .card .card-title {
+    margin-bottom: 30px;
+}
+
+.register-page .form-control {
+    border-width: 2.3px;
+}
+
+.register-page .form-group label {
+    width: 100%;
+}
+
+.register-page .btn.btn-block {
+    padding: 12px 10px;
+}
+
+.register-page .footer {
+    margin: 40px 0;
+    color: #888;
+    text-align: center;
+}
+
+@media screen and (max-width: 425px) {
+    .register-page .card-wrapper {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .register-page .card.fat {
+        padding: 0;
+    }
+    .register-page .card.fat .card-body {
+        padding: 15px;
+    }
+}
