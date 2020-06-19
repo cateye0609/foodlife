@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
+
+import { AuthModule } from './auth/auth.module';
 import { NiceSelectModule } from "ng-nice-select";
+import { ToastrModule } from 'ngx-toastr';
 
 // Components
 import { AppComponent } from './app.component';
@@ -16,9 +18,8 @@ import { AboutComponent } from './pages/about/about.component';
 import { RecipesComponent } from './pages/recipes/recipes.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { SearchModalComponent } from './shared/components/search-modal/search-modal.component';
-import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
-import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { NotfoundComponent } from './pages/notfound/notfound.component';
+import { ProfileModule } from './profile/profile.module';
 
 @NgModule({
   declarations: [
@@ -33,14 +34,19 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
     RecipesComponent,
     CategoriesComponent,
     SearchModalComponent,
-    LoginComponent,
-    RegisterComponent,
-    ForgotPasswordComponent
+    NotfoundComponent,
   ],
   imports: [
     BrowserModule,
+    AuthModule,
+    ProfileModule,
     AppRoutingModule,
-    NiceSelectModule
+    NiceSelectModule,
+    ToastrModule.forRoot({
+      timeOut: 1500,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

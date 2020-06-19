@@ -17,7 +17,8 @@
                         </ul>
                     </li>
                     <li><a routerLink="/about">About us</a></li>
-                    <li><a routerLink="/user/login">Login</a></li>
+                    <li *ngIf="!is_loggedIn"><a routerLink="/user/login">Login</a></li>
+                    <li *ngIf="is_loggedIn"><a routerLink="/user/profile">Profile</a></li>
                 </ul>
                 <div class="nav-right search-switch">
                     <i class="fa fa-search"></i>

@@ -13,12 +13,12 @@
           <div class="card fat">
             <div class="card-body">
               <h4 class="card-title">Login</h4>
-              <form>
+              <form #login="ngForm" id="loginForm" (ngSubmit)="onLogin(login.value)">
                 <div class="form-group">
-                  <label for="email">Username</label>
-                  <input id="email" type="text" class="form-control" name="email" required autofocus>
+                  <label for="email">Email</label>
+                  <input id="email" type="email" class="form-control" name="email" required ngModel autofocus>
                   <div class="invalid-feedback">
-                    Username is invalid
+                    Email is invalid
                   </div>
                 </div>
 
@@ -28,7 +28,7 @@
                       Forgot Password?
                     </a>
                   </label>
-                  <input id="password" type="password" class="form-control" name="password" required data-eye>
+                  <input id="password" type="password" minlength="8" class="form-control" name="password" required ngModel data-eye>
                   <div class="invalid-feedback">
                     Password is required
                   </div>
@@ -42,7 +42,7 @@
                 </div> -->
 
                 <div class="form-group m-0">
-                  <button type="submit" class="btn btn-primary btn-block">
+                  <button type="submit" form="loginForm" class="btn btn-primary btn-block">
                     Login
                   </button>
                 </div>

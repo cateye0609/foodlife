@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AuthenticationService } from '../../auth/auth.service';
+
 declare var $: any;
 
 @Component({
@@ -8,8 +10,11 @@ declare var $: any;
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-  constructor() { }
+  is_loggedIn = this.authService.is_loggedIn();
+  
+  constructor(
+    private authService: AuthenticationService
+  ) { }
 
   ngOnInit(): void {
     $(".mobile-menu").slicknav({
