@@ -57,6 +57,13 @@ export class AuthenticationService {
         );
     }
 
+    // Logout
+    logout() {
+        localStorage.clear();
+        this.toastr.success("Đăng xuất thành công!");
+        this.router.navigate(['/user/login']);
+    }
+
     // Kiểm tra có đăng nhập không
     is_loggedIn() {
         return !!localStorage.getItem('token');

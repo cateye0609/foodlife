@@ -16,30 +16,36 @@
               <form #register="ngForm" id="regForm" (ngSubmit)="onRegister(register.value)">
                 <div class="form-group">
                   <label for="name">Username</label>
-                  <input id="name" type="text" class="form-control" name="username" required ngModel autofocus>
-                  <div class="invalid-feedback">
+                  <input id="name" type="text" class="form-control"
+                    [class.is-invalid]="usernameControl.invalid && usernameControl.dirty" name="username" required 
+                    ngModel #usernameControl="ngModel" autofocus>
+                  <div class="invalid-feedback d-block" *ngIf="usernameControl.invalid && usernameControl.dirty">
                     What's your username?
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="email">E-mail Address</label>
-                  <input id="email" type="email" class="form-control" name="email" required ngModel>
-                  <div class="invalid-feedback">
+                  <input id="email" type="email" class="form-control"
+                    [class.is-invalid]="emailControl.invalid && emailControl.dirty" name="email" required 
+                    ngModel #emailControl="ngModel">
+                  <div class="invalid-feedback d-block" *ngIf="emailControl.invalid && emailControl.dirty">
                     Your email is invalid
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="password">Password</label>
-                  <input id="password" type="password" minlength="8" class="form-control" name="password" required ngModel data-eye>
-                  <div class="invalid-feedback">
-                    Password is required
+                  <input id="password" type="password" minlength="8" class="form-control"
+                    [class.is-invalid]="passwordControl.invalid && passwordControl.dirty" name="password" required
+                   ngModel #passwordControl="ngModel" data-eye>
+                  <div class="invalid-feedback d-block" *ngIf="passwordControl.invalid && passwordControl.dirty">
+                    Password is invalid
                   </div>
                 </div>
 
                 <div class="form-group m-0">
-                  <button type="submit" form="regForm" class="btn btn-primary btn-block">
+                  <button type="submit" form="regForm" class="btn btn-primary btn-block" [disabled]="register.invalid">
                     Register
                   </button>
                 </div>

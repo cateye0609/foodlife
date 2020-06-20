@@ -27,7 +27,11 @@
                         </li>
                         <li><a routerLink="/about">About us</a></li>
                         <li *ngIf="!is_loggedIn"><a routerLink="/user/login">Login</a></li>
-                        <li *ngIf="is_loggedIn"><a routerLink="/user/profile">Profile</a></li>
+                        <li *ngIf="is_loggedIn"><a routerLink="/user/profile">Profile</a>
+                            <ul class="sub-menu">
+                                <li><a style="cursor: pointer;" (click)="logout()">Logout</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
                 <div class="nav-right search-switch">
