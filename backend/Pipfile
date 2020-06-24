@@ -10,6 +10,8 @@ autopep8 = "*"
 [packages]
 djangorestframework = "*"
 django = "*"
+pyjwt = "*"
+django-cors-headers = "*"
 
 [requires]
 python_version = "3.8"
