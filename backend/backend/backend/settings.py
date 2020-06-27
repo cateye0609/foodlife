@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'authentication',
     'profiles',
     'articles',
+    'uploadapp'
 ]
 
 MIDDLEWARE = [
@@ -124,6 +125,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+BASE_URL = "http://localhost:8000"
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 AUTH_USER_MODEL = 'authentication.User'
 
