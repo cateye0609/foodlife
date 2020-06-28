@@ -1,1 +1,36 @@
-<p>profile works!</p>
+<!-- Page Preloder -->
+<div id="preloder">
+  <div class="loader"></div>
+</div>
+
+<app-header></app-header>
+
+<body>
+  <div class="container vertical-center">
+    <div class="card profile-card">
+      <div class="row">
+        <div class="col-md-5 avatar-section">
+          <img src="https://via.placeholder.com/300" alt="avatar" class="img-fluid">
+        </div>
+        <div class="col-md-7">
+          <div class="card-body info-section">
+            <h2 class="card-title">{{userinfo?.username}}</h2>
+            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga saepe odit quidem
+              blanditiis maiores hic unde asperiores libero harum, magni soluta temporibus, assumenda animi iste?
+              Numquam explicabo in sed unde.</p>
+            <ul>
+              <li><i class="fa fa-transgender" aria-hidden="true">{{userinfo?.gender}}</i></li>
+              <li><i class="fa fa-calendar" aria-hidden="true"></i>{{userinfo?.birthday | date: 'dd/MM/yyyy'}}</li>
+              <li><i class="fa fa-phone" aria-hidden="true"></i>012345679</li>
+              <li><i class="fa fa-envelope" aria-hidden="true"></i>{{userinfo?.email}}</li>
+              <li><i class="fa fa-home" aria-hidden="true"></i>asasdsdas</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+  <search-modal></search-modal>
+</body>

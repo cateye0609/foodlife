@@ -23,6 +23,8 @@ body.login-page {
 }
 
 .login-page .brand {
+    background-color: white;
+    padding: 0.8em;
     width: 90px;
     height: 90px;
     overflow: hidden;
