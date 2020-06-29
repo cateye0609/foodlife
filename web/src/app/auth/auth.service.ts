@@ -31,11 +31,13 @@ export class AuthenticationService {
             res => {
                 const response = res as LoginResponseModel;
                 localStorage.setItem('token', response.user.token);
+                localStorage.setItem('username', response.user.username);
                 this.toastr.success("Đăng nhập thành công!");
                 this.router.navigate(['/home']);
             },
             err => {
-                this.toastr.error(err.errors.error);
+                this.toastr.error("Lỗi trong lúc đăng nhập!");
+                console.error(err.errors.error);
             }
         );
     }
@@ -55,6 +57,13 @@ export class AuthenticationService {
                 console.log(err.errors.error);
             }
         );
+    }
+
+    // Logout
+    logout() {
+        localStorage.clear();
+        this.toastr.success("Đăng xuất thành công!");
+        this.router.navigate(['/user/login']);
     }
 
     // Kiểm tra có đăng nhập không

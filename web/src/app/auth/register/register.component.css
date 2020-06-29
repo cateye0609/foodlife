@@ -21,6 +21,8 @@ body.register-page {
 }
 
 .register-page .brand {
+    background-color: white;
+    padding: 0.8em;
     width: 90px;
     height: 90px;
     overflow: hidden;
@@ -49,6 +51,7 @@ body.register-page {
 }
 
 .register-page .card .card-title {
+    color: #FC0254;
     margin-bottom: 30px;
 }
 
