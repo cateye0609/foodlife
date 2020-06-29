@@ -1,26 +1,34 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { NiceSelectModule } from "ng-nice-select";
 
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SearchModalComponent } from './components/search-modal/search-modal.component';
+import { SearchComponent } from './components/search/search.component';
+import { SuggestsComponent } from './components/suggests/suggests.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     FooterComponent,
-    SearchModalComponent
+    SearchModalComponent,
+    SearchComponent,
+    SuggestsComponent
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    NiceSelectModule
   ],
   exports: [
     CommonModule,
     HeaderComponent,
     FooterComponent,
-    SearchModalComponent
+    SearchModalComponent,
+    SearchComponent,
+    SuggestsComponent
   ]
 })
 export class SharedModule { }

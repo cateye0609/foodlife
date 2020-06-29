@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { catchError } from 'rxjs/operators';
 
 import { API } from '../_api/apiURL';
-import { ToastrService } from 'ngx-toastr';
 import { CommonService } from '../_services/common.service';
 
 @Injectable()
@@ -15,7 +14,6 @@ export class ProfileService {
         private http: HttpClient,
         private commonService: CommonService,
         private router: Router,
-        private toastr: ToastrService
     ) { }
 
     // Lấy thông tin user

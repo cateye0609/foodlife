@@ -6,4 +6,5 @@ export interface UserModel {
     image: string;
     birthday: string;
     gender?: string;
+    following?: boolean;
 }
