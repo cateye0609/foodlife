@@ -8,3 +8,7 @@ export interface UserModel {
     gender?: string;
     following?: boolean;
 }
+
+export interface UserResponseModel {
+    profile: UserModel;
+}

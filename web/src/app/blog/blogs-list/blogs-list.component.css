@@ -1,0 +1,24 @@
+.text-3line {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
+.more-link {
+    display: inline;
+    border-radius: 0;
+    color: white;
+    background-color: #FC0254;
+    border: none;
+}
+
+.more-link:hover {
+    background-color: #d10045;
+}
+
+.more-link:focus {
+    box-shadow: 0 0 0 0.2rem rgba(78, 252, 107, 0.25);
+}

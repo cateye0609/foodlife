@@ -12,3 +12,7 @@ export interface BlogModel {
     slug: string;
     tagList: string[];
 }
+
+export interface BlogsListResponse {
+    articles: BlogModel[];
+}

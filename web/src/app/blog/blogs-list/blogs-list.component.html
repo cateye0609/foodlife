@@ -8,20 +8,20 @@
 <section class="recipe-section spad">
   <div class="container">
     <div class="row">
-      <div class="col-lg-4 col-sm-6">
+      <div class="col-lg-4 col-sm-6" *ngFor="let blog of blogs_list">
         <div class="recipe-item">
           <a routerLink="/blog/1"><img src="assets/img/recipe/recipe-1.jpg" alt=""></a>
           <div class="ri-text">
-            <div class="cat-name">Desert</div>
+            <div class="cat-name">{{blog?.tagList[0]}}</div>
             <a routerLink="/blog/1">
-              <h4>One Pot Weeknight Soup</h4>
+              <h4>{{blog?.title}}</h4>
             </a>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-              ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet.</p>
+            <p class="text-3line">{{blog?.description}}</p>
+            <a routerLink="/blog/1" class="btn more-link">Read more</a>
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-sm-6">
+      <!-- <div class="col-lg-4 col-sm-6">
         <div class="recipe-item">
           <a routerLink="/blog/1"><img src="assets/img/recipe/recipe-2.jpg" alt=""></a>
           <div class="ri-text">
@@ -124,7 +124,7 @@
               ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet.</p>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="row">
       <div class="col-lg-12">

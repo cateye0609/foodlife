@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../profile.service';
-import { UserModel } from '../../_models/user.model';
-
-interface ProfileModel {
-  profile: UserModel;
-}
+import { UserModel, UserResponseModel } from '../../_models/user.model';
 
 @Component({
   selector: 'app-profile',
@@ -24,9 +20,8 @@ export class ProfileComponent implements OnInit {
 
   get_userinfo() {
     this.profileService.get_userinfo().subscribe(
-      res => {
-        let response = res as ProfileModel;
-        this.userinfo = response.profile;
+      (res: UserResponseModel) => {
+        this.userinfo = res.profile;
       }
     )
   }
