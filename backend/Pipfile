@@ -12,6 +12,7 @@ djangorestframework = "*"
 django = "*"
 pyjwt = "*"
 django-cors-headers = "*"
+django-extensions = "*"
 
 [requires]
 python_version = "3.8"
