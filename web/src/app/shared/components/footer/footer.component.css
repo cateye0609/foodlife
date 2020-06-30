@@ -5,6 +5,14 @@ h3 {
     margin-bottom: 20px;
 }
 
-.footer-text {
+i {
+    margin-right: 0.6em;
+}
+
+.footer-text, .footer-text a {
     color: #7a818d;
+}
+
+.logo img {
+    width: 350px;
 }

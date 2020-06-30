@@ -11,7 +11,7 @@ declare var $: any;
 })
 export class HomeComponent implements OnInit {
   is_loggedIn = this.authService.is_loggedIn();
-  
+
   constructor(
     private authService: AuthenticationService
   ) { }
@@ -21,5 +21,9 @@ export class HomeComponent implements OnInit {
       prependTo: '#mobile-menu-wrap',
       allowParentLinks: true
     });
+  }
+
+  logout() {
+    this.authService.logout()
   }
 }

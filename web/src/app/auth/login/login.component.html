@@ -8,7 +8,7 @@
       <div class="row justify-content-center h-100">
         <div class="card-wrapper">
           <div class="brand">
-            <a routerLink="/home"><img src="assets/img/logo/logo.jpg" alt="logo"></a>
+            <a routerLink="/home"><img src="assets/img/logo/logo.png" alt="logo"></a>
           </div>
           <div class="card fat">
             <div class="card-body">
@@ -16,8 +16,10 @@
               <form #login="ngForm" id="loginForm" (ngSubmit)="onLogin(login.value)">
                 <div class="form-group">
                   <label for="email">Email</label>
-                  <input id="email" type="email" class="form-control" name="email" required ngModel autofocus>
-                  <div class="invalid-feedback">
+                  <input id="email" type="email" class="form-control" 
+                    [class.is-invalid]="emailControl.invalid && emailControl.touched" name="email" required 
+                    ngModel #emailControl="ngModel" autofocus>
+                  <div class="invalid-feedback d-block" role="alert" *ngIf="emailControl.invalid && emailControl.dirty">
                     Email is invalid
                   </div>
                 </div>
@@ -28,8 +30,10 @@
                       Forgot Password?
                     </a>
                   </label>
-                  <input id="password" type="password" minlength="8" class="form-control" name="password" required ngModel data-eye>
-                  <div class="invalid-feedback">
+                  <input id="password" type="password" minlength="8" class="form-control"
+                    [class.is-invalid]="passwordControl.invalid && passwordControl.touched" name="password" required 
+                    ngModel #passwordControl="ngModel" data-eye>
+                  <div class="invalid-feedback d-block" role="alert" *ngIf="passwordControl.invalid && passwordControl.dirty">
                     Password is required
                   </div>
                 </div>
@@ -42,7 +46,7 @@
                 </div> -->
 
                 <div class="form-group m-0">
-                  <button type="submit" form="loginForm" class="btn btn-primary btn-block">
+                  <button type="submit" form="loginForm" class="btn btn-primary btn-block" [disabled]="login.invalid">
                     Login
                   </button>
                 </div>
