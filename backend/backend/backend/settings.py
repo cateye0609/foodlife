@@ -124,6 +124,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+BASE_URL = "http://localhost:8000"
+
+
 CORS_ORIGIN_ALLOW_ALL = True
 
 BASE_URL = "http://localhost:8000"

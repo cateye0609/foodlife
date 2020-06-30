@@ -1,5 +1,5 @@
 from rest_framework import serializers
-
+from django.conf import settings
 from profiles.api.serializers import ProfileSerializer
 
 from .models import Article, Comment, Tag
@@ -10,6 +10,7 @@ class ArticleSerializer(serializers.ModelSerializer):
     author = ProfileSerializer(read_only=True)
     description = serializers.CharField(required=False)
     slug = serializers.SlugField(required=False)
+    image_uri = serializers.SerializerMethodField()
 
     favorited = serializers.SerializerMethodField()
     favoritesCount = serializers.SerializerMethodField(
@@ -28,12 +29,14 @@ class ArticleSerializer(serializers.ModelSerializer):
             'body',
             'createdAt',
             'description',
+            'image_uri',
             'favorited',
             'favoritesCount',
             'slug',
             'tagList',
             'title',
             'updatedAt',
+            'image'
         )
 
     def create(self, validated_data):
@@ -65,6 +68,12 @@ class ArticleSerializer(serializers.ModelSerializer):
 
     def get_updated_at(self, instance):
         return instance.updated_at.isoformat()
+
+    def get_image_uri(self, instance):
+        image_uri = ''
+        if instance.image:
+            image_uri = settings.BASE_URL + instance.image
+        return image_uri
 
 
 class CommentSerializer(serializers.ModelSerializer):

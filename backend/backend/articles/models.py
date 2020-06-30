@@ -9,6 +9,7 @@ class Article(TimestampedModel):
 
     description = models.TextField()
     body = models.TextField()
+    image = models.CharField(max_length=255, blank=True)
 
     # Every article must have an author. This will answer questions like "Who
     # gets credit for writing this article?" and "Who can edit this article?".

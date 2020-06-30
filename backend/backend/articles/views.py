@@ -48,7 +48,6 @@ class ArticleViewSet(mixins.CreateModelMixin,
             'tags': request.data.get("article").get("tags")
         }
         serializer_data = request.data.get('article', {})
-        print(serializer_data)
         serializer = self.serializer_class(
             data=serializer_data, context=serializer_context
         )
