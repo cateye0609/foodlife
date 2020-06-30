@@ -7,6 +7,10 @@
     -webkit-box-orient: vertical;
 }
 
+.recipe-item img {
+    height: 300px;
+}
+
 .more-link {
     display: inline;
     border-radius: 0;

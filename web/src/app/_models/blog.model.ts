@@ -3,6 +3,8 @@ import { UserModel } from './user.model';
 export interface BlogModel {
     author: UserModel;
     title: string;
+    image: string;
+    image_uri: string;
     description: string
     body: string;
     createdAt: string;
