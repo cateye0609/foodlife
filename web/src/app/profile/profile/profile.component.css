@@ -44,6 +44,13 @@ i {
     font-weight: 600;
 }
 
+.edit-btn {
+    float: right;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    box-shadow: 1px 1px 5px -1px rgba(0, 0, 0, 0.75);
+}
+
 /* @media only screen and (max-width: 768px) {
     .avatar-section img {
         width: 200;
