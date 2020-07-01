@@ -8,7 +8,25 @@
 }
 
 .recipe-item img {
+    width: 100%;
     height: 300px;
+}
+
+.feature-img {
+    object-fit: cover;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+
+.feature-img:hover {
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3);
+}
+
+.img-wrapper {
+    overflow: hidden;
 }
 
 .more-link {

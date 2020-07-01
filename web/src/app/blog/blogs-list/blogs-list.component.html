@@ -10,14 +10,19 @@
     <div class="row">
       <div class="col-lg-4 col-sm-6" *ngFor="let blog of blogs_list">
         <div class="recipe-item">
-          <a routerLink="/blog/1"><img src={{blog?.image}} alt=""></a>
+          <!-- Feature image -->
+          <a [routerLink]="['/blog/', blog.slug]">
+            <div class="img-wrapper">
+              <img src={{blog?.image}} alt="feature-img" class="feature-img">
+            </div>
+          </a>
           <div class="ri-text">
             <div class="cat-name">{{blog?.tagList[0]}}</div>
-            <a routerLink="/blog/1">
+            <a [routerLink]="['/blog/', blog.slug]">
               <h4>{{blog?.title}}</h4>
             </a>
             <p class="text-3line">{{blog?.description}}</p>
-            <a routerLink="/blog/1" class="btn more-link">Read more</a>
+            <a [routerLink]="['/blog/', blog.slug]" class="btn more-link">Read more</a>
           </div>
         </div>
       </div>

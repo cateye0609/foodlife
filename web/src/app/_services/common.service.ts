@@ -18,6 +18,6 @@ export class CommonService {
             console.error("Server side error: ", error.error.message);
         }
         this.toastr.error(errorText);
-        return throwError(errorText);
+        return throwError(error);
     }
 }

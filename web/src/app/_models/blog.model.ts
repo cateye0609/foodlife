@@ -18,3 +18,7 @@ export interface BlogModel {
 export interface BlogsListResponse {
     articles: BlogModel[];
 }
+
+export interface BlogResponse {
+    article: BlogModel;
+}

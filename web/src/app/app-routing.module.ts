@@ -16,7 +16,8 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'recipes', component: RecipesComponent },
   { path: 'categories', component: CategoriesComponent },
-  { path: '**', component: NotfoundComponent },
+  { path: '404', component: NotfoundComponent },
+  { path: '**', redirectTo: '/404' },
 ];
 
 @NgModule({
