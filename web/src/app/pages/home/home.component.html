@@ -50,48 +50,48 @@
       <div class="row">
         <div class="col-lg-6 order-lg-2">
           <div class="pt-recipe-item large-item">
-            <div class="pt-recipe-img set-bg" data-setbg="assets/img/recipe-3.jpg">
+            <div class="pt-recipe-img" [style.background-image]="'url(' + blogs_list[0]?.image + ')'">
               <i class="fa fa-plus"></i>
             </div>
             <div class="pt-recipe-text">
-              <span>March 10, 2019</span>
-              <h3>Cannellini Aglio e Olio with Salmon</h3>
+              <span>{{blogs_list[0]?.createdAt | date: 'd MMMM, y'}}</span>
+              <a [routerLink]="['/blog/', blogs_list[0]?.slug]"><h3>{{blogs_list[0]?.title}}</h3></a>
             </div>
           </div>
         </div>
         <div class="col-lg-3 col-md-6 order-lg-1">
           <div class="pt-recipe-item">
-            <div class="pt-recipe-img set-bg" data-setbg="assets/img/recipe-1.jpg">
+            <div class="pt-recipe-img" [style.background-image]="'url(' + blogs_list[1]?.image + ')'">
               <i class="fa fa-plus"></i>
             </div>
             <div class="pt-recipe-text">
-              <h4>Raw Vegan Carrot Cake Bites with Avocado</h4>
+              <a [routerLink]="['/blog/', blogs_list[1]?.slug]"><h4 class="text-2line">{{blogs_list[1]?.title}}</h4></a>
             </div>
           </div>
           <div class="pt-recipe-item">
-            <div class="pt-recipe-img set-bg" data-setbg="assets/img/recipe-2.jpg">
+            <div class="pt-recipe-img" [style.background-image]="'url(' + blogs_list[2]?.image + ')'">
               <i class="fa fa-plus"></i>
             </div>
             <div class="pt-recipe-text">
-              <h4>One Pot Weeknight Lasagna Soup Recipe</h4>
+              <a [routerLink]="['/blog/', blogs_list[2]?.slug]"><h4 class="text-2line">{{blogs_list[2]?.title}}</h4></a>
             </div>
           </div>
         </div>
         <div class="col-lg-3 col-md-6 order-lg-3">
           <div class="pt-recipe-item">
-            <div class="pt-recipe-img set-bg" data-setbg="assets/img/recipe-4.jpg">
+            <div class="pt-recipe-img" [style.background-image]="'url(' + blogs_list[3]?.image + ')'">
               <i class="fa fa-plus"></i>
             </div>
             <div class="pt-recipe-text">
-              <h4>Beef Burger with French Fries and Salad</h4>
+              <a [routerLink]="['/blog/', blogs_list[3]?.slug]"><h4 class="text-2line">{{blogs_list[3]?.title}}</h4></a>
             </div>
           </div>
           <div class="pt-recipe-item">
-            <div class="pt-recipe-img set-bg" data-setbg="assets/img/recipe-5.jpg">
+            <div class="pt-recipe-img" [style.background-image]="'url(' + blogs_list[4]?.image + ')'">
               <i class="fa fa-plus"></i>
             </div>
             <div class="pt-recipe-text">
-              <h4>Raspberry Pancakes with Honey and Butter</h4>
+              <a [routerLink]="['/blog/', blogs_list[3]?.slug]"><h4 class="text-2line">{{blogs_list[4]?.title}}</h4></a>
             </div>
           </div>
         </div>

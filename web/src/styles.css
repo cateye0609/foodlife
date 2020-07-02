@@ -1,3 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+
 @import '~jquery-nice-select/css/nice-select';
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+.text-3line {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
+.text-2line {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    /* number of lines to show */
+    -webkit-box-orient: vertical;
+}

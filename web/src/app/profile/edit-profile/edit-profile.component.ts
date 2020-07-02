@@ -45,9 +45,7 @@ export class EditProfileComponent implements OnInit {
 
   // Cập nhật user info
   onSubmit(data: EditUserModel) {
-    let body = `username=${data.username}&bio=${data.bio}&
-                gender=${data.gender}&birthday=${data.birthday}&
-                email=${data.email}`;
+    let body = `username=${data.username}&bio=${data.bio}&gender=${data.gender}&birthday=${data.birthday}&email=${data.email}&image=""`;
     console.log(data);
     this.profileService.update_userinfo(body).subscribe(
       res => {

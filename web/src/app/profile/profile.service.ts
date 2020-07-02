@@ -29,7 +29,8 @@ export class ProfileService {
     // Sửa thông tin user
     update_userinfo(body: string) {
         let headers = new HttpHeaders({
-            'Authorization': localStorage.getItem('token'),
+            'Authorization': `Token ${localStorage.getItem('token')}`,
+            'Content-type': 'application/x-www-form-urlencoded',
         });
 
         return this.http.put(API.USER, body, { headers: headers })

@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
       $(this).css('background-image', 'url(' + bg + ')');
     });
   }
+  
   ngOnInit() {
     this.setbg();
   }

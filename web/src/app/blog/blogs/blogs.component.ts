@@ -5,6 +5,8 @@ import { BlogService } from '../blog.service';
 
 import { BlogModel, BlogResponse } from '../../_models/blog.model';
 
+declare var $: any;
+
 @Component({
   selector: 'app-blogs',
   templateUrl: './blogs.component.html',
@@ -44,5 +46,10 @@ export class BlogsComponent implements OnInit {
         }
       }
     )
+  }
+
+  // Like bài viết
+  like_clicked() {
+    $(".heart").toggleClass("is-active");
   }
 }

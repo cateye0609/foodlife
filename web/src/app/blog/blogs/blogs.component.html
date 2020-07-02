@@ -23,8 +23,8 @@
           <div class="blog-title">
             <span>{{blog?.createdAt | date: 'd MMMM, y'}}</span>
             <h2>{{blog?.title}}</h2>
-            <ul class="tags" *ngFor="let tag of blog?.tagList">
-              <li>{{tag}}</li>
+            <ul class="tags">
+              <li *ngFor="let tag of blog?.tagList">{{tag}}</li>
             </ul>
             <div class="blog-quote">
               <!-- <i class="fa fa-quote-left"></i> -->
@@ -60,39 +60,42 @@
               nunc, a venenatis dolor. Nulla tempus ornare massa vitae malesuada. Curabitur ultricies
               faucibus ipsum id imperdiet. Donec in dolor ex.</p> -->
             <p>{{blog?.body}}</p>
+            <div class="like float-right">
+              <div class="heart" (click)="like_clicked()"></div>
+            </div>
           </div>
           <!-- <div class="blog-comment">
-                        <h3>Comments (3)</h3>
-                        <div class="single-comment">
-                            <img src="img/blog-comment.png" alt="">
-                            <ul>
-                                <li>Maria Smith</li>
-                                <li>March 29, 2019</li>
-                                <li>Reply</li>
-                            </ul>
-                            <p>amet magna in nunc malesuada ornare quis sed libero. Aenean ornare rutrum vestibulum.
-                                Morbi a mi vel nunc bibendum viverra sed ut dui. Proin accumsan, neque quis
-                                fringilla bibendum, lectus neque interdum odio, quis blandit metus nibh sit amet
-                                nibh. Vivamus lobortis libero non tellus imperdiet fringilla. Sed quis enim id odio
-                                blandit maximus ut a mi. Aenean enim ante, rutrum id cursus ac, facilisis at sapien.
-                                Vestibulum facilisis quam sit amet leo elementum.</p>
-                        </div>
-                    </div>
-                    <form action="#" class="comment-form">
-                        <h3>Leave a Comment</h3>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <input type="text" placeholder="Your name">
-                            </div>
-                            <div class="col-lg-6">
-                                <input type="text" placeholder="Your email">
-                            </div>
-                            <div class="col-lg-12">
-                                <textarea placeholder="Comment"></textarea>
-                            </div>
-                        </div>
-                        <button type="submit">Post</button>
-                    </form> -->
+            <h3>Comments (3)</h3>
+            <div class="single-comment">
+              <img src="img/blog-comment.png" alt="">
+              <ul>
+                <li>Maria Smith</li>
+                <li>March 29, 2019</li>
+                <li>Reply</li>
+              </ul>
+              <p>amet magna in nunc malesuada ornare quis sed libero. Aenean ornare rutrum vestibulum.
+                Morbi a mi vel nunc bibendum viverra sed ut dui. Proin accumsan, neque quis
+                fringilla bibendum, lectus neque interdum odio, quis blandit metus nibh sit amet
+                nibh. Vivamus lobortis libero non tellus imperdiet fringilla. Sed quis enim id odio
+                blandit maximus ut a mi. Aenean enim ante, rutrum id cursus ac, facilisis at sapien.
+                Vestibulum facilisis quam sit amet leo elementum.</p>
+            </div>
+          </div>
+          <form action="#" class="comment-form">
+            <h3>Leave a Comment</h3>
+            <div class="row">
+              <div class="col-lg-6">
+                <input type="text" placeholder="Your name">
+              </div>
+              <div class="col-lg-6">
+                <input type="text" placeholder="Your email">
+              </div>
+              <div class="col-lg-12">
+                <textarea placeholder="Comment"></textarea>
+              </div>
+            </div>
+            <button type="submit">Post</button>
+          </form> -->
         </div>
       </div>
     </div>

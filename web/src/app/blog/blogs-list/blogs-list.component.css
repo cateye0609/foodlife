@@ -1,12 +1,3 @@
-.text-3line {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    /* number of lines to show */
-    -webkit-box-orient: vertical;
-}
-
 .recipe-item img {
     width: 100%;
     height: 300px;
