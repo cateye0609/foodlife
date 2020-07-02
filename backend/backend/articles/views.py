@@ -1,4 +1,4 @@
-from rest_framework import generics, mixins, status, viewsets
+from rest_framework import generics, mixins, status, viewsets, filters
 from rest_framework.exceptions import NotFound
 from rest_framework.permissions import (
     AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly
@@ -17,6 +17,8 @@ class ArticleViewSet(mixins.CreateModelMixin,
                      mixins.RetrieveModelMixin,
                      viewsets.GenericViewSet):
     lookup_field = 'slug'
+    search_fields = ['title']
+    filter_backends = (filters.SearchFilter,)
     queryset = Article.objects.select_related('author', 'author__user')
     permission_classes = (IsAuthenticatedOrReadOnly,)
     renderer_classes = (ArticleJSONRenderer,)
@@ -24,6 +26,10 @@ class ArticleViewSet(mixins.CreateModelMixin,
 
     def get_queryset(self):
         queryset = self.queryset
+
+        search = self.request.query_params.get('search', None)
+        if search is not None:
+            queryset = queryset.filter(title__unaccent__trigram_similar=search)
 
         author = self.request.query_params.get('author', None)
         if author is not None:
