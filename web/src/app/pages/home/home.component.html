@@ -16,21 +16,21 @@
       <div class="nav-menu">
         <nav class="main-menu mobile-menu">
           <ul>
-            <li><a routerLink="/home">Home</a></li>
-            <li><a style="cursor: pointer;">Pages</a>
+            <li><a routerLink="/home">Trang chủ</a></li>
+            <li><a style="cursor: pointer;">Điều hướng</a>
               <ul class="sub-menu">
-                <li><a routerLink="/about">About Me</a></li>
-                <li><a routerLink="/categories">Categories</a></li>
-                <li><a routerLink="/recipes">Recipe</a></li>
-                <li><a routerLink="/blogs">Blogs</a></li>
+                <li><a routerLink="/about">Thông tin</a></li>
+                <!-- <li><a routerLink="/categories">Categories</a></li> -->
+                <!-- <li><a routerLink="/recipes">Recipe</a></li> -->
+                <li><a routerLink="/blogs">Bài viết</a></li>
                 <!-- <li><a href="contact.html">Contact</a></li> -->
               </ul>
             </li>
-            <li><a routerLink="/about">About us</a></li>
-            <li *ngIf="!is_loggedIn"><a routerLink="/user/login">Login</a></li>
+            <li><a routerLink="/about">Thông tin</a></li>
+            <li *ngIf="!is_loggedIn"><a routerLink="/user/login">Đăng nhập</a></li>
             <li *ngIf="is_loggedIn"><a routerLink="/user/profile">Profile</a>
               <ul class="sub-menu">
-                <li><a style="cursor: pointer;" (click)="logout()">Logout</a></li>
+                <li><a style="cursor: pointer;" (click)="logout()">Đăng xuất</a></li>
               </ul>
             </li>
           </ul>

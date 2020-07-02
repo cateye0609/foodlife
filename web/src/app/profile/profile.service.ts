@@ -25,4 +25,16 @@ export class ProfileService {
                 catchError(err => this.commonService.handleError(err, "Lỗi trong lúc lấy thông tin user!"))
             );
     }
+
+    // Sửa thông tin user
+    update_userinfo(body: string) {
+        let headers = new HttpHeaders({
+            'Authorization': localStorage.getItem('token'),
+        });
+
+        return this.http.put(API.USER, body, { headers: headers })
+            .pipe(
+                catchError(err => this.commonService.handleError(err, "Lỗi cập nhật user!"))
+            );
+    }
 }

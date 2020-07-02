@@ -54,7 +54,7 @@ i {
     font-weight: 600;
 }
 
-.info-section form input, textarea {
+.info-section form input, textarea, select {
     margin-bottom: .5rem;
 }
 
