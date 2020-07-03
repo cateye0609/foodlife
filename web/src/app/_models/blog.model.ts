@@ -22,3 +22,16 @@ export interface BlogsListResponse {
 export interface BlogResponse {
     article: BlogModel;
 }
+
+export interface BlogCommentModel {
+    comments: CommentModel[];
+    commentsCount: number;
+}
+
+export interface CommentModel {
+    author: UserModel;
+    body: string;
+    createdAt: string;
+    updatedAt: string;
+    id: number;
+}
