@@ -20,4 +20,9 @@ export class CommonService {
         this.toastr.error(errorText);
         return throwError(error);
     }
+
+    // Upload ảnh
+    upload_image() {
+
+    }
 }

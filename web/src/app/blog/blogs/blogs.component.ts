@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { BlogService } from '../blog.service';
 import { ToastrService } from 'ngx-toastr';
 
-import { BlogModel, BlogResponse, BlogCommentModel } from '../../_models/blog.model';
+import { BlogModel, BlogResponse, BlogCommentModel, CommentModel } from '../../_models/blog.model';
 
 declare var $: any;
 
@@ -14,6 +14,10 @@ declare var $: any;
   styleUrls: ['./blogs.component.css']
 })
 export class BlogsComponent implements OnInit {
+  // Ngx-pagination
+  @Input('data') comments_list: CommentModel[] = [];
+  page: number = 1;
+
   blog: BlogModel;
   blog_comments: BlogCommentModel;
   constructor(
@@ -60,6 +64,7 @@ export class BlogsComponent implements OnInit {
     this.blogService.get_blog_comment(blog_slug).subscribe(
       (res: BlogCommentModel) => {
         this.blog_comments = res;
+        this.comments_list = this.blog_comments.comments;
       }
     )
   }

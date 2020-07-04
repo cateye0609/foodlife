@@ -6,7 +6,7 @@
 <app-header></app-header>
 
 <body>
-  <div class="container vertical-center">
+  <div class="container vertical-center justify-content-center">
     <div class="card profile-card">
       <div class="row">
         <div class="col-md-5 avatar-section">
@@ -17,9 +17,7 @@
             <a routerLink="/user/edit" class="btn edit-btn">Edit</a>
             <div class="info-section">
               <h2 class="card-title">{{userinfo?.username}}</h2>
-              <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga saepe odit quidem
-                blanditiis maiores hic unde asperiores libero harum, magni soluta temporibus, assumenda animi iste?
-                Numquam explicabo in sed unde.</p>
+              <p class="card-text">{{userinfo?.bio}}</p>
               <ul>
                 <li><i class="fa fa-transgender" aria-hidden="true"></i>{{userinfo?.gender}}</li>
                 <li><i class="fa fa-calendar" aria-hidden="true"></i>{{userinfo?.birthday | date: 'dd/MM/yyyy'}}</li>

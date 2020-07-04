@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { BlogModel, BlogsListResponse } from '../../_models/blog.model';
 
@@ -10,8 +10,8 @@ import { BlogService } from '../blog.service';
   styleUrls: ['./blogs-list.component.css']
 })
 export class BlogsListComponent implements OnInit {
-  blogs_list: BlogModel[];
-
+  @Input('data') blogs_list: BlogModel[] = [];
+  page: number = 1;
 
   constructor(
     private blogService: BlogService

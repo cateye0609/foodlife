@@ -35,3 +35,7 @@
 .more-link:focus {
     box-shadow: 0 0 0 0.2rem rgba(78, 252, 107, 0.25);
 }
+
+.cat-name {
+    margin-right: 2px;
+}
