@@ -3,6 +3,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
 from rest_framework.views import APIView
+from django.http import Http404
 
 from ..models import Profile
 from .renderers import ProfileJSONRenderer
@@ -20,10 +21,14 @@ class ProfileRetrieveAPIView(generics.RetrieveAPIView):
     def retrieve(self, request, username, *args, **kwargs):
         # Try to retrieve the requested profile and throw an exception if the
         # profile could not be found.
+       
         try:
             profile = self.queryset.get(user__username=username)
         except Profile.DoesNotExist:
-            user = User.objects.get(username=username)
+            try:
+                user = User.objects.get(username=username)
+            except User.DoesNotExist:
+                raise Http404
             profile = Profile.objects.create(user_id=user.pk, birthday='1990-01-01')
         serializer = self.serializer_class(profile, context={
             'request': request
