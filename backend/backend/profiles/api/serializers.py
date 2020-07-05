@@ -9,7 +9,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     bio = serializers.CharField(allow_blank=True, required=False)
     image = serializers.SerializerMethodField()
     birthday = serializers.CharField(allow_blank=True, required=False)
-    gender = serializers.CharField(source='get_gender_display')
+    # gender = serializers.CharField(source='get_gender_display')
 
     following = serializers.SerializerMethodField()
 
@@ -24,8 +24,8 @@ class ProfileSerializer(serializers.ModelSerializer):
 
         return 'https://static.productionready.io/images/smiley-cyrus.jpg'
 
-    def get_gender(self, obj):
-        return obj.get_gender_display()
+    # def get_gender(self, obj):
+    #     return obj.get_gender_display()
 
     def get_following(self, instance):
         request = self.context.get('request', None)

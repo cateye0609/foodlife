@@ -75,6 +75,11 @@ class UserRetrieveUpdateAPIView(RetrieveUpdateAPIView):
             }
         }
 
+        try:
+            Profile.objects.get(user__username=request.user.username)
+        except Profile.DoesNotExist:
+            Profile.objects.create(user_id=request.user.pk, birthday='1990-01-01')
+
         serializer = self.serializer_class(
             request.user, data=serializer_data, partial=True
         )
