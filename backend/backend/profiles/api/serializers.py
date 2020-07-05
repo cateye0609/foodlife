@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from ..models import Profile
+from django.conf import settings
 
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -7,22 +8,16 @@ class ProfileSerializer(serializers.ModelSerializer):
     email = serializers.CharField(source='user.email')
 
     bio = serializers.CharField(allow_blank=True, required=False)
-    image = serializers.SerializerMethodField()
     birthday = serializers.CharField(allow_blank=True, required=False)
     # gender = serializers.CharField(source='get_gender_display')
 
     following = serializers.SerializerMethodField()
+    avatar_uri = serializers.SerializerMethodField()
 
     class Meta:
         model = Profile
-        fields = ["id", 'username', 'email', 'bio', 'image', 'birthday', 'gender', 'following']
+        fields = ["id", 'username', 'email', 'bio', 'birthday', 'gender', 'following', 'avatar', 'avatar_uri']
         read_only_fields = ['username', 'email']
-
-    def get_image(self, obj):
-        if obj.image:
-            return obj.image
-
-        return 'https://static.productionready.io/images/smiley-cyrus.jpg'
 
     # def get_gender(self, obj):
     #     return obj.get_gender_display()
@@ -40,3 +35,9 @@ class ProfileSerializer(serializers.ModelSerializer):
         followee = instance
 
         return follower.is_following(followee)
+
+    def get_avatar_uri(self, instance):
+        avatar_uri = ''
+        if instance.avatar:
+            avatar_uri = settings.BASE_URL + instance.avatar
+        return avatar_uri

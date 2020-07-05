@@ -72,7 +72,8 @@ class UserRetrieveUpdateAPIView(RetrieveUpdateAPIView):
                 'bio': request.data.get('bio', {}),
                 'birthday': request.data.get('birthday', {}),
                 'gender': request.data.get('gender', {}),
-            }
+                'avatar': request.data.get('avatar', {}),
+            },
         }
 
         print(serializer_data)

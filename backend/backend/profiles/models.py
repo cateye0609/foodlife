@@ -14,9 +14,9 @@ class Profile(TimestampedModel):
     )
 
     bio = models.TextField(blank=True)
-    image = models.CharField(max_length=255, blank=True)
     birthday = models.DateField(null=True)
     gender = models.CharField(max_length=1, blank=True, choices=GENDER_CHOICES)
+    avatar = models.CharField(max_length=255, blank=True)
 
     follows = models.ManyToManyField(
         'self',
