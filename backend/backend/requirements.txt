@@ -1,8 +1,9 @@
-Django~=3.0.7
-djangorestframework~=3.11.0
+Django==3.0.7
+djangorestframework==3.11.0
 djangorestframework-jwt==1.11.0
 django-cors-headers==3.3.0
 django-extensions==3.0.1
 psycopg2==2.8.5
 PyJWT~=1.7.1
 pylint==2.4.4
+django-rest-framework-social-oauth2==1.1.0

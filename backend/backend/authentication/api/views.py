@@ -8,6 +8,7 @@ from .renderers import UserJSONRenderer
 from .serializers import (
     LoginSerializer, UserSerializer, RegistrationSerializer
 )
+from profiles.models import Profile
 
 
 class RegistrationAPIView(APIView):
@@ -50,6 +51,11 @@ class UserRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     serializer_class = UserSerializer
 
     def retrieve(self, request, *args, **kwargs):
+        try:
+            Profile.objects.get(user__username=request.user.username)
+        except Profile.DoesNotExist:
+            Profile.objects.create(user_id=request.user.pk, birthday='1990-01-01')
+
         serializer = self.serializer_class(request.user)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
