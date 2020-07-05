@@ -61,6 +61,11 @@ class LoginSerializer(serializers.Serializer):
             raise serializers.ValidationError(
                 'This user has been deactivated.'
             )
+        try:
+            Profile.objects.get(user__username=user.username)
+        except Profile.DoesNotExist:
+            Profile.objects.create(user_id=user.pk, birthday='1990-01-01')
+
 
         return {
             'email': user.email,
