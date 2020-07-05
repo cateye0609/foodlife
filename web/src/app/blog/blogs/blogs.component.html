@@ -47,6 +47,7 @@
                 <li>{{comment?.author?.username}}</li>
                 <li>{{comment?.createdAt | date: 'd MMMM, y'}}</li>
                 <!-- <li>Reply</li> -->
+                <li style="cursor: pointer;" *ngIf="comment?.author?.username == username" (click)="delete_comment(comment?.id)">Delete</li>
               </ul>
               <p>{{comment?.body}}</p>
             </div>

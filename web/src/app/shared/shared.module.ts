@@ -15,7 +15,7 @@ import { SuggestsComponent } from './components/suggests/suggests.component';
     FooterComponent,
     SearchModalComponent,
     SearchComponent,
-    SuggestsComponent
+    SuggestsComponent,
   ],
   imports: [
     CommonModule,

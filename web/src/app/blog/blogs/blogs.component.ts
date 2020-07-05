@@ -18,6 +18,8 @@ export class BlogsComponent implements OnInit {
   @Input('data') comments_list: CommentModel[] = [];
   page: number = 1;
 
+  username = localStorage.getItem('username');
+
   blog: BlogModel;
   blog_comments: BlogCommentModel;
   constructor(
@@ -87,6 +89,7 @@ export class BlogsComponent implements OnInit {
     // Update lại data
     this.loaddata();
   }
+
   // Comment bài viết
   commentSubmit(data: {
     content: string
@@ -95,6 +98,16 @@ export class BlogsComponent implements OnInit {
       (res) => {
         this.toastr.success("Comment bài viết thành công!");
         $('#commentTextbox').val('');
+        this.loaddata();
+      }
+    )
+  }
+
+  // Xóa comment
+  delete_comment(comment_id: string) {
+    this.blogService.delete_comment(this.blog.slug, comment_id).subscribe(
+      (res) => {
+        this.toastr.success("Đã xóa comment!");
         this.loaddata();
       }
     )

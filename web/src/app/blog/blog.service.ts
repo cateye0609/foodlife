@@ -94,4 +94,15 @@ export class BlogService {
                 catchError(err => this.commonService.handleError(err, "Lỗi khi comment bài viết!"))
             );
     }
+
+    // Xóa comment
+    delete_comment(slug: string, comment_id: string) {
+        let headers = new HttpHeaders({
+            'Authorization': `Token ${localStorage.getItem('token')}`,
+        });
+        return this.http.delete<CommentResponseModel>(`${API.ARTICLES}/${slug}/comments/${comment_id}`, { headers: headers })
+            .pipe(
+                catchError(err => this.commonService.handleError(err, "Lỗi khi xóa comment!"))
+            );
+    }
 }

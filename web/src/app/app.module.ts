@@ -16,6 +16,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { RecipesComponent } from './pages/recipes/recipes.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
+import { SearchResultPageComponent } from './pages/search-result-page/search-result-page.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { NotfoundComponent } from './pages/notfound/notfound.component';
     AboutComponent,
     RecipesComponent,
     CategoriesComponent,
+    SearchResultPageComponent,
     // SearchModalComponent,
     NotfoundComponent,
   ],
