@@ -10,7 +10,7 @@
     <div class="card profile-card">
       <div class="row">
         <div class="col-md-5 avatar-section">
-          <img src="https://via.placeholder.com/300" alt="avatar" class="img-fluid">
+          <img src={{userinfo?.image}} alt="avatar" class="img-fluid">
         </div>
         <div class="col-md-7">
           <div class="card-body h-100">
@@ -19,11 +19,13 @@
               <h2 class="card-title">{{userinfo?.username}}</h2>
               <p class="card-text">{{userinfo?.bio}}</p>
               <ul>
-                <li><i class="fa fa-transgender" aria-hidden="true"></i>{{userinfo?.gender}}</li>
+                <li><i class="fa fa-transgender" aria-hidden="true"></i>
+                  {{userinfo?.gender == 'M' ? 'Nam': (userinfo?.gender == 'F' ? 'Nữ' : '')}}
+                </li>
                 <li><i class="fa fa-calendar" aria-hidden="true"></i>{{userinfo?.birthday | date: 'dd/MM/yyyy'}}</li>
-                <li><i class="fa fa-phone" aria-hidden="true"></i>012345679</li>
+                <!-- <li><i class="fa fa-phone" aria-hidden="true"></i>012345679</li> -->
                 <li><i class="fa fa-envelope" aria-hidden="true"></i>{{userinfo?.email}}</li>
-                <li><i class="fa fa-home" aria-hidden="true"></i>asasdsdas</li>
+                <!-- <li><i class="fa fa-home" aria-hidden="true"></i>asasdsdas</li> -->
               </ul>
             </div>
           </div>

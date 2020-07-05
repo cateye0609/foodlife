@@ -5,5 +5,6 @@ export const API = {
     PROFILE: `${environment.API_URL}/profiles/`,
     USER: `${environment.API_URL}/user/`,
 
-    ARTICLES: `${environment.API_URL}/articles`
+    ARTICLES: `${environment.API_URL}/articles`,
+    UPLOAD_IMAGE: `${environment.API_URL}/upload/`
 };

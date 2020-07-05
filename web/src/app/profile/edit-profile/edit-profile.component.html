@@ -10,44 +10,36 @@
     <div class="card profile-card">
       <div class="row">
         <div class="col-md-5 avatar-section">
-          <img src="https://via.placeholder.com/300" alt="avatar" class="img-fluid">
-          <input type="file">
+          <img src={{userinfo?.image}} alt="avatar" class="img-fluid">
+          <input type="file" accept="image/*" (change)="avt_changed($event)">
         </div>
         <div class="col-md-7">
           <div class="card-body info-section">
             <form id="edituserForm" #edituser="ngForm" (ngSubmit)="onSubmit(edituser.value)">
               <label for="username">Username</label>
-              <input 
-                id="username" name="username" class="form-control" 
-                type="text" required 
-                ngModel #username="ngModel" [(ngModel)]="userinfo.username">
+              <input id="username" name="username" class="form-control" type="text" required ngModel #username="ngModel"
+                [(ngModel)]="userinfo.username">
               <label for="bio">Bio</label>
-              <textarea 
-                id="bio" name="bio" rows="5" class="form-control" 
-                ngModel #bio="ngModel" [(ngModel)]="userinfo.bio"></textarea>
+              <textarea id="bio" name="bio" rows="5" class="form-control" ngModel #bio="ngModel"
+                [(ngModel)]="userinfo.bio"></textarea>
               <label for="gender">Gender</label>
               <select class="form-control" id="gender" name="gender" ngModel [(ngModel)]="userinfo.gender">
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-              </select> 
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+              </select>
               <label for="birthday">Birthday</label>
-              <input 
-                id="birthday" name="birthday" class="form-control"
-                type="date"
-                ngModel #birthday="ngModel" [(ngModel)]="userinfo.birthday">
+              <input id="birthday" name="birthday" class="form-control" type="date" ngModel #birthday="ngModel"
+                [(ngModel)]="userinfo.birthday">
               <!-- <label for="phone">Phone</label>
               <input 
                 id="phone" name="phone" class="form-control"
                 type="tel"
                 ngModel #phone="ngModel" [(ngModel)]="userinfo.phone"> -->
               <label for="email">Email</label>
-              <input 
-                id="email" name="email" class="form-control"
-                type="email" required
-                ngModel #email="ngModel" [(ngModel)]="userinfo.email">
-              <input 
-                type="submit" value="Submit" class="btn btn-success"
-                form="edituserForm" [disabled]="edituser.invalid">
+              <input id="email" name="email" class="form-control" type="email" required ngModel #email="ngModel"
+                [(ngModel)]="userinfo.email">
+              <input type="submit" value="Submit" class="btn btn-success" form="edituserForm"
+                [disabled]="edituser.invalid">
             </form>
           </div>
         </div>

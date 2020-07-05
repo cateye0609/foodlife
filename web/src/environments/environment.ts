@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   // API_URL: 'http://localhost:8000/api',
+  BASE_URL: 'https://foodlife-backend.herokuapp.com',
   API_URL: 'https://foodlife-backend.herokuapp.com/api',
 };
 

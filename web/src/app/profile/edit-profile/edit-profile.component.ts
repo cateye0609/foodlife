@@ -4,7 +4,10 @@ import { Router } from '@angular/router';
 import { UserModel, UserResponseModel } from '../../_models/user.model';
 import { ProfileService } from '../profile.service';
 import { ToastrService } from 'ngx-toastr';
+import { CommonService } from '../../_services/common.service';
 
+import { ImageModel } from '../../_models/image.model';
+import { environment } from '../../../environments/environment';
 declare interface EditUserModel {
   username: string;
   bio?: string;
@@ -21,9 +24,12 @@ declare interface EditUserModel {
 })
 export class EditProfileComponent implements OnInit {
   userinfo: UserModel;
+  avatar_url: string;
+  avatarFile: any;
 
   constructor(
     private profileService: ProfileService,
+    private commonService: CommonService,
     private toastr: ToastrService,
     private router: Router
   ) {
@@ -45,13 +51,34 @@ export class EditProfileComponent implements OnInit {
 
   // Cập nhật user info
   onSubmit(data: EditUserModel) {
-    let body = `username=${data.username}&bio=${data.bio}&gender=${data.gender}&birthday=${data.birthday}&email=${data.email}&image=""`;
-    console.log(data);
+    if (this.avatarFile) {
+      this.commonService.upload_image(this.avatarFile, 'avatar').subscribe(
+        (res: ImageModel) => {
+          this.userinfo.image = `${environment.BASE_URL}${res.file}`;
+        },
+        err => { },
+        () => {
+          this.userinfo_update(this.userinfo);
+        }
+      )
+    } else {
+      this.userinfo_update(this.userinfo);
+    }
+  }
+
+  // Cập nhật userinfo
+  userinfo_update(data: UserModel) {
+    let body = `username=${data.username}&bio=${data.bio}&gender=${data.gender}&birthday=${data.birthday}&email=${data.email}&image=${data.image}`;
     this.profileService.update_userinfo(body).subscribe(
       res => {
         this.toastr.success("Cập nhật profile thành công!");
         this.router.navigate(['/user/profile']);
       }
     );
+  }
+
+  // Avart thay đổi
+  avt_changed(event: any) {
+    this.avatarFile = event.target.files[0];
   }
 }
