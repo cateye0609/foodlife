@@ -66,7 +66,6 @@ class LoginSerializer(serializers.Serializer):
         except Profile.DoesNotExist:
             Profile.objects.create(user_id=user.pk, birthday='1990-01-01')
 
-
         return {
             'email': user.email,
             'username': user.username,
@@ -84,20 +83,22 @@ class UserSerializer(serializers.ModelSerializer):
     profile = ProfileSerializer(write_only=True)
 
     bio = serializers.CharField(source='profile.bio', read_only=True)
-    image = serializers.CharField(source='profile.image', read_only=True)
+    avatar = serializers.CharField(source='profile.avatar', read_only=True)
     birthday = serializers.CharField(source='profile.birthday', read_only=True)
     gender = serializers.CharField(source="profile.gender", read_only=True)
 
     class Meta:
         model = User
         fields = ['email', 'username', 'password', 'token', 'profile', 'bio',
-                  'image', 'birthday', 'gender']
+                  'avatar', 'birthday', 'gender']
 
         read_only_fields = ('token',)
 
     def update(self, instance, validated_data):
+        print(validated_data)
         password = validated_data.pop('password', None)
         profile_data = validated_data.pop('profile', {})
+
         for (key, value) in validated_data.items():
             setattr(instance, key, value)
 
