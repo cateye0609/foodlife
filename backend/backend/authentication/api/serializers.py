@@ -98,6 +98,8 @@ class UserSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         password = validated_data.pop('password', None)
         profile_data = validated_data.pop('profile', {})
+        print(profile_data)
+
         for (key, value) in validated_data.items():
             setattr(instance, key, value)
 

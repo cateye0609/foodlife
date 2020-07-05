@@ -68,12 +68,14 @@ class UserRetrieveUpdateAPIView(RetrieveUpdateAPIView):
             'email': request.data.get('email', {}),
 
             'profile': {
-                'bio': request.data.get('bio', {}),
                 'image': request.data.get('image', {}),
+                'bio': request.data.get('bio', {}),
                 'birthday': request.data.get('birthday', {}),
                 'gender': request.data.get('gender', {}),
             }
         }
+
+        print(serializer_data)
 
         try:
             Profile.objects.get(user__username=request.user.username)
@@ -83,6 +85,7 @@ class UserRetrieveUpdateAPIView(RetrieveUpdateAPIView):
         serializer = self.serializer_class(
             request.user, data=serializer_data, partial=True
         )
+
         serializer.is_valid(raise_exception=True)
         serializer.save()
 

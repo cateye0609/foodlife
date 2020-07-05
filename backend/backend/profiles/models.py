@@ -14,7 +14,7 @@ class Profile(TimestampedModel):
     )
 
     bio = models.TextField(blank=True)
-    image = models.URLField(blank=True)
+    image = models.CharField(max_length=255, blank=True)
     birthday = models.DateField(null=True)
     gender = models.CharField(max_length=1, blank=True, choices=GENDER_CHOICES)
 
@@ -59,4 +59,3 @@ class Profile(TimestampedModel):
     def has_favorited(self, article):
         """Returns True if we have favorited `article`; else False."""
         return self.favorites.filter(pk=article.pk).exists()
-

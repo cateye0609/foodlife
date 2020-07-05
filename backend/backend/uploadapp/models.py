@@ -3,7 +3,7 @@ from core.models import TimestampedModel
 
 
 class File(TimestampedModel):
-    file = models.FileField(blank=False, null=False)
+    link = models.FileField(blank=False, null=False)
     description = models.CharField(max_length=255, default='')
 
     def __str__(self):
