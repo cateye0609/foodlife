@@ -6,7 +6,7 @@ import { API } from '../_api/apiURL';
 import { CommonService } from '../_services/common.service';
 import { AuthenticationService } from '../auth/auth.service';
 
-import { BlogModel, BlogResponse, BlogsListResponse, BlogCommentModel } from '../_models/blog.model';
+import { BlogModel, BlogResponse, BlogsListResponse, BlogCommentModel, TopBlogModel } from '../_models/blog.model';
 
 declare interface CommentResponseModel {
     comment: {
@@ -47,6 +47,14 @@ export class BlogService {
                     catchError(err => this.commonService.handleError(err, "Lỗi trong lúc lấy bài viết!"))
                 );
         }
+    }
+
+    // Lấy top blog
+    get_top_blogs() {
+        return this.http.get<TopBlogModel>(API.TOP_ARTICLES)
+            .pipe(
+                catchError(err => this.commonService.handleError(err, "Lỗi trong lúc lấy danh sách top bài viết!"))
+            );
     }
 
     // Like blog

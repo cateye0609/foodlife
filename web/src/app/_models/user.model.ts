@@ -3,7 +3,8 @@ export interface UserModel {
     username: string;
     email: string;
     bio?: string;
-    image: string;
+    avatar: string;
+    avatar_uri: string;
     birthday: string;
     gender?: string;
     following?: boolean;

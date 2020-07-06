@@ -55,7 +55,9 @@
             </div>
             <div class="pt-recipe-text">
               <span>{{blogs_list[0]?.createdAt | date: 'd MMMM, y'}}</span>
-              <a [routerLink]="['/blog/', blogs_list[0]?.slug || 'all']"><h3>{{blogs_list[0]?.title}}</h3></a>
+              <a [routerLink]="['/blog/', blogs_list[0]?.slug || 'all']">
+                <h3>{{blogs_list[0]?.title}}</h3>
+              </a>
             </div>
           </div>
         </div>
@@ -65,7 +67,9 @@
               <i class="fa fa-plus"></i>
             </div>
             <div class="pt-recipe-text">
-              <a [routerLink]="['/blog/', blogs_list[1]?.slug || 'all']"><h4 class="text-2line">{{blogs_list[1]?.title}}</h4></a>
+              <a [routerLink]="['/blog/', blogs_list[1]?.slug || 'all']">
+                <h4 class="text-2line">{{blogs_list[1]?.title}}</h4>
+              </a>
             </div>
           </div>
           <div class="pt-recipe-item">
@@ -73,7 +77,9 @@
               <i class="fa fa-plus"></i>
             </div>
             <div class="pt-recipe-text">
-              <a [routerLink]="['/blog/', blogs_list[2]?.slug || 'all']"><h4 class="text-2line">{{blogs_list[2]?.title}}</h4></a>
+              <a [routerLink]="['/blog/', blogs_list[2]?.slug || 'all']">
+                <h4 class="text-2line">{{blogs_list[2]?.title}}</h4>
+              </a>
             </div>
           </div>
         </div>
@@ -83,7 +89,9 @@
               <i class="fa fa-plus"></i>
             </div>
             <div class="pt-recipe-text">
-              <a [routerLink]="['/blog/', blogs_list[3]?.slug || 'all']"><h4 class="text-2line">{{blogs_list[3]?.title}}</h4></a>
+              <a [routerLink]="['/blog/', blogs_list[3]?.slug || 'all']">
+                <h4 class="text-2line">{{blogs_list[3]?.title}}</h4>
+              </a>
             </div>
           </div>
           <div class="pt-recipe-item">
@@ -91,7 +99,9 @@
               <i class="fa fa-plus"></i>
             </div>
             <div class="pt-recipe-text">
-              <a [routerLink]="['/blog/', blogs_list[3]?.slug || 'all']"><h4 class="text-2line">{{blogs_list[4]?.title}}</h4></a>
+              <a [routerLink]="['/blog/', blogs_list[3]?.slug || 'all']">
+                <h4 class="text-2line">{{blogs_list[4]?.title}}</h4>
+              </a>
             </div>
           </div>
         </div>
@@ -100,10 +110,10 @@
   </section>
   <!-- Page Top Recipe Section End -->
 
-  <!-- Top Recipe Section Begin -->
+  <!-- Top Like Section Begin -->
   <section class="top-recipe spad">
     <div class="section-title">
-      <h5>Top Recipes this Week</h5>
+      <h5>Các bài viết nhiều like nhất</h5>
     </div>
     <div class="container po-relative">
       <!-- <div class="plus-icon">
@@ -112,93 +122,37 @@
       <div class="row">
         <div class="col-lg-6">
           <div class="top-recipe-item large-item">
-            <div class="top-recipe-img set-bg" data-setbg="assets/img/top-recipe/recipe-1.jpg">
+            <div class="top-recipe-img" [style.background-image]="'url(' + top_like_blogs[0]?.image + ')'">
               <i class="fa fa-plus"></i>
             </div>
             <div class="top-recipe-text">
-              <div class="cat-name">Desert</div>
-              <a href="#">
-                <h4>One Pot Weeknight Lasagna Soup Recipe</h4>
+              <div *ngFor="let tag of top_like_blogs[0]?.tagList" style="display: inline-block;">
+                <div class="cat-name mr-1">{{tag}}</div>
+              </div>
+              <a [routerLink]="['/blog/', top_like_blogs[0]?.slug || 'all']">
+                <h4>{{top_like_blogs[0]?.title}}</h4>
               </a>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing
-                elit, sed do eiusmod tempor incididunt ut labore.</p>
+              <p class="text-2line">{{top_like_blogs[0]?.description}}</p>
             </div>
           </div>
         </div>
         <div class="col-lg-6">
-          <div class="top-recipe-item">
+          <div class="top-recipe-item" *ngFor="let blog of top_like_blogs.slice(1)">
             <div class="row">
               <div class="col-sm-4">
-                <div class="top-recipe-img set-bg" data-setbg="assets/img/top-recipe/recipe-2.jpg">
+                <div class="top-recipe-img" [style.background-image]="'url(' + blog?.image + ')'">
                   <i class="fa fa-plus"></i>
                 </div>
               </div>
               <div class="col-sm-8">
                 <div class="top-recipe-text">
-                  <div class="cat-name">Vegan</div>
-                  <a href="#">
-                    <h4>One Pot Weeknight Lasagna Soup Recipe</h4>
+                  <div *ngFor="let tag of blog?.tagList" style="display: inline-block;">
+                    <div class="cat-name mr-1">{{tag}}</div>
+                  </div>
+                  <a [routerLink]="['/blog/', blog?.slug || 'all']">
+                    <h4>{{blog?.title}}</h4>
                   </a>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="top-recipe-item">
-            <div class="row">
-              <div class="col-sm-4">
-                <div class="top-recipe-img set-bg" data-setbg="assets/img/top-recipe/recipe-3.jpg">
-                  <i class="fa fa-plus"></i>
-                </div>
-              </div>
-              <div class="col-sm-8">
-                <div class="top-recipe-text">
-                  <div class="cat-name">Meat lover</div>
-                  <a href="#">
-                    <h4>Veggie soup with Mushrooms</h4>
-                  </a>
-                  <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua. Lorem ipsum dolor sit amet, consectetur.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="top-recipe-item">
-            <div class="row">
-              <div class="col-sm-4">
-                <div class="top-recipe-img set-bg" data-setbg="assets/img/top-recipe/recipe-4.jpg">
-                  <i class="fa fa-plus"></i>
-                </div>
-              </div>
-              <div class="col-sm-8">
-                <div class="top-recipe-text">
-                  <div class="cat-name">Desert</div>
-                  <a href="#">
-                    <h4>Caramel Ice Cream with Berries</h4>
-                  </a>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="top-recipe-item">
-            <div class="row">
-              <div class="col-sm-4">
-                <div class="top-recipe-img set-bg" data-setbg="assets/img/top-recipe/recipe-5.jpg">
-                  <i class="fa fa-plus"></i>
-                </div>
-              </div>
-              <div class="col-sm-8">
-                <div class="top-recipe-text">
-                  <div class="cat-name">Desert</div>
-                  <a href="#">
-                    <h4>Freash Octopuse with lime juice</h4>
-                  </a>
-                  <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua. Lorem ipsum dolor sit amet, consectetur.</p>
+                  <p class="text-2line">{{blog?.description}}</p>
                 </div>
               </div>
             </div>
@@ -208,6 +162,59 @@
     </div>
   </section>
   <!-- Top Recipe Section End -->
+
+  <!-- Top Comment Section Begin -->
+  <section class="top-recipe spad">
+    <div class="section-title">
+      <h5>Các bài viết nhiều comment nhất</h5>
+    </div>
+    <div class="container po-relative">
+      <!-- <div class="plus-icon">
+      <i class="fa fa-plus"></i>
+    </div> -->
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="top-recipe-item large-item">
+            <div class="top-recipe-img" [style.background-image]="'url(' + top_comment_blogs[0]?.image + ')'">
+              <i class="fa fa-plus"></i>
+            </div>
+            <div class="top-recipe-text">
+              <div *ngFor="let tag of top_comment_blogs[0]?.tagList" style="display: inline-block;">
+                <div class="cat-name mr-1">{{tag}}</div>
+              </div>
+              <a [routerLink]="['/blog/', top_comment_blogs[0]?.slug || 'all']">
+                <h4>{{top_comment_blogs[0]?.title}}</h4>
+              </a>
+              <p class="text-2line">{{top_comment_blogs[0]?.description}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="top-recipe-item" *ngFor="let blog of top_comment_blogs.slice(1)">
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="top-recipe-img" [style.background-image]="'url(' + blog?.image + ')'">
+                  <i class="fa fa-plus"></i>
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <div class="top-recipe-text">
+                  <div *ngFor="let tag of blog?.tagList" style="display: inline-block;">
+                    <div class="cat-name mr-1">{{tag}}</div>
+                  </div>
+                  <a [routerLink]="['/blog/', blog?.slug || 'all']">
+                    <h4>{{blog?.title}}</h4>
+                  </a>
+                  <p class="text-2line">{{blog?.description}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Top Comment Section End -->
 
   <!-- Categories Filter Section Begin -->
   <!-- <div class="categories-filter-section spad">

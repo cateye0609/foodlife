@@ -98,6 +98,7 @@ export class BlogsComponent implements OnInit {
       (res) => {
         this.toastr.success("Comment bài viết thành công!");
         $('#commentTextbox').val('');
+        data.content = '';
         this.loaddata();
       }
     )

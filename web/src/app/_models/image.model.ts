@@ -1,6 +1,6 @@
 export interface ImageModel {
     id: string;
     created_at: string;
-    file: string;
+    link: string;
     description: string;
 }

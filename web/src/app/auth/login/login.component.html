@@ -16,9 +16,9 @@
               <form #login="ngForm" id="loginForm" (ngSubmit)="onLogin(login.value)">
                 <div class="form-group">
                   <label for="email">Email</label>
-                  <input id="email" type="email" class="form-control" 
-                    [class.is-invalid]="emailControl.invalid && emailControl.touched" name="email" required 
-                    ngModel #emailControl="ngModel" autofocus>
+                  <input id="email" type="email" class="form-control"
+                    [class.is-invalid]="emailControl.invalid && emailControl.touched" name="email" required ngModel
+                    #emailControl="ngModel" autofocus>
                   <div class="invalid-feedback d-block" role="alert" *ngIf="emailControl.invalid && emailControl.dirty">
                     Yêu cầu email hợp lệ
                   </div>
@@ -31,9 +31,10 @@
                     </a>
                   </label>
                   <input id="password" type="password" minlength="8" class="form-control"
-                    [class.is-invalid]="passwordControl.invalid && passwordControl.touched" name="password" required 
+                    [class.is-invalid]="passwordControl.invalid && passwordControl.touched" name="password" required
                     ngModel #passwordControl="ngModel" data-eye>
-                  <div class="invalid-feedback d-block" role="alert" *ngIf="passwordControl.invalid && passwordControl.dirty">
+                  <div class="invalid-feedback d-block" role="alert"
+                    *ngIf="passwordControl.invalid && passwordControl.dirty">
                     Yêu cầu mật khẩu
                   </div>
                 </div>
@@ -54,6 +55,8 @@
                   Không có tài khoản? <a routerLink="/user/register">Đăng ký</a>
                 </div>
               </form>
+              <!-- <div class="fb-login-button" data-size="large" data-button-type="login_with" data-layout="rounded"
+                data-auto-logout-link="false" data-use-continue-as="true" data-width=""></div> -->
             </div>
           </div>
         </div>

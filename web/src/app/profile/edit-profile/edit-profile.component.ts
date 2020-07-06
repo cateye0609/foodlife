@@ -54,7 +54,7 @@ export class EditProfileComponent implements OnInit {
     if (this.avatarFile) {
       this.commonService.upload_image(this.avatarFile, 'avatar').subscribe(
         (res: ImageModel) => {
-          this.userinfo.image = `${environment.BASE_URL}${res.file}`;
+          this.userinfo.avatar = `${environment.BASE_URL}${res.link}`;
         },
         err => { },
         () => {
@@ -68,7 +68,7 @@ export class EditProfileComponent implements OnInit {
 
   // Cập nhật userinfo
   userinfo_update(data: UserModel) {
-    let body = `username=${data.username}&bio=${data.bio}&gender=${data.gender}&birthday=${data.birthday}&email=${data.email}&image=${data.image}`;
+    let body = `username=${data.username}&bio=${data.bio}&gender=${data.gender}&birthday=${data.birthday}&email=${data.email}&image=${data.avatar}`;
     this.profileService.update_userinfo(body).subscribe(
       res => {
         this.toastr.success("Cập nhật profile thành công!");

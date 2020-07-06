@@ -25,4 +25,21 @@ export class LoginComponent implements OnInit {
   }) {
     this.authService.login(data.email, data.password);
   }
+
+  // login() {
+  //   window['FB'].login((response) => {
+  //     console.log('login response', response);
+  //     if (response.authResponse) {
+  //       window['FB'].api('/me', {
+  //         fields: 'last_name, first_name, email, name'
+  //       }, (userInfo) => {
+
+  //         console.log("user information");
+  //         console.log(userInfo);
+  //       });
+  //     } else {
+  //       console.log('User login failed');
+  //     }
+  //   }, { scope: 'email' });
+  // }
 }

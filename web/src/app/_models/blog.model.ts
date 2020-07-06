@@ -35,3 +35,10 @@ export interface CommentModel {
     updatedAt: string;
     id: number;
 }
+
+export interface TopBlogModel {
+    article: {
+        top_like: BlogModel[];
+        top_comment: BlogModel[]
+    };
+}
