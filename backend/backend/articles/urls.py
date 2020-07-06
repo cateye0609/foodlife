@@ -4,11 +4,10 @@ from rest_framework.routers import DefaultRouter
 
 from .views import (
     ArticleViewSet, ArticlesFavoriteAPIView, ArticlesFeedAPIView,
-    CommentsListCreateAPIView, CommentsDestroyAPIView, TagListAPIView
+    CommentsListCreateAPIView, CommentsDestroyAPIView, TagListAPIView, TopArticleAPIView
 )
 
 app_name = 'articles'
-
 
 router = DefaultRouter(trailing_slash=False)
 router.register(r'articles', ArticleViewSet)
@@ -21,11 +20,13 @@ urlpatterns = [
     url(r'^articles/(?P<article_slug>[-\w]+)/favorite/?$',
         ArticlesFavoriteAPIView.as_view()),
 
-    url(r'^articles/(?P<article_slug>[-\w]+)/comments/?$', 
+    url(r'^articles/(?P<article_slug>[-\w]+)/comments/?$',
         CommentsListCreateAPIView.as_view()),
 
     url(r'^articles/(?P<article_slug>[-\w]+)/comments/(?P<comment_pk>[\d]+)/?$',
         CommentsDestroyAPIView.as_view()),
 
     url(r'^tags/?$', TagListAPIView.as_view()),
+
+    url(r'^top-articles', TopArticleAPIView.as_view())
 ]

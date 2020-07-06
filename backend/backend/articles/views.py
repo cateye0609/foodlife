@@ -11,6 +11,8 @@ from .models import Article, Comment, Tag
 from .renderers import ArticleJSONRenderer, CommentJSONRenderer
 from .serializers import ArticleSerializer, CommentSerializer, TagSerializer
 
+from django.db.models import Count
+
 
 class ArticleViewSet(mixins.CreateModelMixin,
                      mixins.ListModelMixin,
@@ -110,6 +112,31 @@ class ArticleViewSet(mixins.CreateModelMixin,
         serializer.save()
 
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class TopArticleAPIView(APIView):
+    queryset = Article.objects.select_related('author', 'author__user')
+    permission_classes = (AllowAny,)
+    renderer_classes = (ArticleJSONRenderer,)
+    serializer_class = ArticleSerializer
+
+    def get(self, request):
+        queryset = self.queryset
+
+        articles_like_count = queryset.all().annotate(like_count=Count('favorited_by'))
+        top_articles_like = articles_like_count.order_by('-like_count')[:5]
+        top_like = []
+        for top_article in top_articles_like:
+            serializer = self.serializer_class(top_article)
+            top_like.append(serializer.data)
+
+        articles_comments_count = queryset.all().annotate(comments_count=Count('comments'))
+        top_articles_comments_count = articles_comments_count.order_by('-comments_count')[:5]
+        top_comment = []
+        for top_article in top_articles_comments_count:
+            serializer = self.serializer_class(top_article)
+            top_comment.append(serializer.data)
+        return Response({"top_like": top_like, "top_comment": top_comment}, status=status.HTTP_200_OK)
 
 
 class CommentsListCreateAPIView(generics.ListCreateAPIView):
