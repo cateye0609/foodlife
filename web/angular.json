@@ -19,7 +19,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": false,
-			"rebaseRootRelativeCssUrls": true,
+            "rebaseRootRelativeCssUrls": true,
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -30,10 +30,13 @@
               "src/assets/css/font-awesome.min.css",
               "src/assets/css/slicknav.min.css",
               "src/assets/css/style.css",
-              "node_modules/ngx-toastr/toastr.css"
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/froala-editor/css/froala_editor.pkgd.min.css",
+              "node_modules/froala-editor/css/froala_style.min.css"
             ],
             "scripts": [
-              "src/assets/js/bootstrap.min.js"
+              "src/assets/js/bootstrap.min.js",
+              "node_modules/froala-editor/js/froala_editor.pkgd.min.js"
             ]
           },
           "configurations": {

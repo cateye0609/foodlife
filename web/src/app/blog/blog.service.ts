@@ -23,6 +23,18 @@ export class BlogService {
         private authService: AuthenticationService
     ) { }
 
+    // Thêm bài viết mới
+    create_blog(body: string) {
+        let headers = new HttpHeaders({
+            'Authorization': `Token ${localStorage.getItem('token')}`,
+            'Content-type': 'application/x-www-form-urlencoded'
+        });
+        return this.http.post(API.ARTICLES, body, { headers: headers })
+            .pipe(
+                catchError(err => this.commonService.handleError(err, "Lỗi trong lúc tạo bài viết!"))
+            );
+    }
+
     // Lấy tất cả bài viết
     get_all_blogs() {
         return this.http.get(API.ARTICLES)

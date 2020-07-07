@@ -20,6 +20,8 @@
                     <li *ngIf="!is_loggedIn"><a routerLink="/user/login">Đăng nhập</a></li>
                     <li *ngIf="is_loggedIn"><a routerLink="/user/profile">{{ username }}</a>
                         <ul class="sub-menu">
+                            <li><a routerLink="/user/profile">Profile</a></li>
+                            <li><a routerLink="/create-blog">Viết bài</a></li>
                             <li><a style="cursor: pointer;" (click)="logout()">Đăng xuất</a></li>
                         </ul>
                     </li>

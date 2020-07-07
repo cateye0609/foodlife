@@ -10,9 +10,8 @@
     <div class="card profile-card">
       <div class="row">
         <div class="col-md-5 avatar-section">
-          <img
-           src={{userinfo?.avatar}} alt="avatar"
-           class="img-fluid" onerror="this.src='https://static.productionready.io/images/smiley-cyrus.jpg'">
+          <img src={{avatar_url}} alt="avatar" class="img-fluid"
+            onerror="this.src='https://static.productionready.io/images/smiley-cyrus.jpg'">
           <input type="file" accept="image/*" (change)="avt_changed($event)">
         </div>
         <div class="col-md-7">

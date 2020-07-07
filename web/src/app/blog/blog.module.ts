@@ -13,6 +13,9 @@ import { CreateBlogComponent } from './create-blog/create-blog.component';
 
 import { BlogService } from './blog.service';
 
+import 'froala-editor/js/plugins.pkgd.min.js'; // Import toàn bộ Froala plugin (Có thể import riêng lẻ từng cái)
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+
 @NgModule({
   declarations: [
     BlogsComponent,
@@ -25,6 +28,8 @@ import { BlogService } from './blog.service';
     CommonModule,
     FormsModule,
     NgxPaginationModule,
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot(),
     BlogRoutingModule,
     SharedModule
   ],
