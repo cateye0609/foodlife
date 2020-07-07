@@ -5,6 +5,6 @@ from .models import File
 class FileSerializer(serializers.ModelSerializer):
     class Meta:
         model = File
-        fields = ['id', 'created_at', 'file', 'description']
+        fields = ['id', 'created_at', 'link', 'description']
 
 
