@@ -3,39 +3,12 @@
     height: 300px;
 }
 
-.feature-img {
-    object-fit: cover;
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    -webkit-transition: .3s ease-in-out;
-    transition: .3s ease-in-out;
+.top-recipe-text a {
+    margin-bottom: 0.25rem;
 }
 
-.feature-img:hover {
-    -webkit-transform: scale(1.3);
-    transform: scale(1.3);
-}
-
-.img-wrapper {
-    overflow: hidden;
-}
-
-.more-link {
-    display: inline;
-    border-radius: 0;
-    color: white;
-    background-color: #FC0254;
-    border: none;
-}
-
-.more-link:hover {
-    background-color: #d10045;
-}
-
-.more-link:focus {
-    box-shadow: 0 0 0 0.2rem rgba(78, 252, 107, 0.25);
-}
-
-.cat-name {
-    margin-right: 2px;
+.top-recipe-text h6 {
+    color: #FC0254;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
 }

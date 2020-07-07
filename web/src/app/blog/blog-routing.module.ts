@@ -1,20 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { AuthGuard } from '../_guard/auth.guard';
+
 import { BlogsComponent } from './blogs/blogs.component';
 import { BlogsListComponent } from './blogs-list/blogs-list.component';
+import { BlogsByTagComponent } from './blogs-by-tag/blogs-by-tag.component';
+import { BlogsByAuthorComponent } from './blogs-by-author/blogs-by-author.component';
+import { CreateBlogComponent } from './create-blog/create-blog.component';
+import { from } from 'rxjs';
 
 const routes: Routes = [
-    // {
-    //     path: 'blogs',
-    //     children: [
-    //         { path: '', redirectTo: 'list', pathMatch: 'full' },
-    //         { path: '/:slug', component: BlogsComponent },
-    //         { path: 'list', component: BlogsListComponent },
-    //     ]
-    // },
     { path: 'blogs', component: BlogsListComponent },
-    { path: 'blog/:slug', component: BlogsComponent }
+    { path: 'blog/:slug', component: BlogsComponent },
+    { path: 'tag/:tag', component: BlogsByTagComponent },
+    { path: 'author/:author', component: BlogsByAuthorComponent },
+    { path: 'create-blog', component: CreateBlogComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

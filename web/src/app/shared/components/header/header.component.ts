@@ -11,7 +11,7 @@ declare var $: any;
 })
 export class HeaderComponent implements OnInit {
   is_loggedIn = this.authService.is_loggedIn();
-
+  username: string = localStorage.getItem('username');
   constructor(
     private authService: AuthenticationService
   ) { }

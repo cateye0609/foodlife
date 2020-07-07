@@ -30,7 +30,7 @@ export class CommonService {
     // Upload ảnh
     upload_image(image: any, description: string) {
         let body = new FormData();
-        body.append('file', image);
+        body.append('link', image);
         body.append('description', description);
         return this.http.post<ImageModel>(API.UPLOAD_IMAGE, body)
             .pipe(

@@ -7,13 +7,19 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
 import { BlogsComponent } from './blogs/blogs.component';
 import { BlogsListComponent } from './blogs-list/blogs-list.component';
+import { BlogsByTagComponent } from './blogs-by-tag/blogs-by-tag.component';
+import { BlogsByAuthorComponent } from './blogs-by-author/blogs-by-author.component';
+import { CreateBlogComponent } from './create-blog/create-blog.component';
 
 import { BlogService } from './blog.service';
 
 @NgModule({
   declarations: [
     BlogsComponent,
-    BlogsListComponent
+    BlogsListComponent,
+    BlogsByTagComponent,
+    BlogsByAuthorComponent,
+    CreateBlogComponent
   ],
   imports: [
     CommonModule,

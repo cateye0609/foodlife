@@ -28,8 +28,9 @@
             </li>
             <li><a routerLink="/about">Thông tin</a></li>
             <li *ngIf="!is_loggedIn"><a routerLink="/user/login">Đăng nhập</a></li>
-            <li *ngIf="is_loggedIn"><a routerLink="/user/profile">Profile</a>
+            <li *ngIf="is_loggedIn"><a routerLink="/user/profile">{{ username }}</a>
               <ul class="sub-menu">
+                <li><a routerLink="/create-blog">Viết bài</a></li>
                 <li><a style="cursor: pointer;" (click)="logout()">Đăng xuất</a></li>
               </ul>
             </li>
@@ -127,11 +128,21 @@
             </div>
             <div class="top-recipe-text">
               <div *ngFor="let tag of top_like_blogs[0]?.tagList" style="display: inline-block;">
-                <div class="cat-name mr-1">{{tag}}</div>
+                <div class="cat-name">
+                  <a [routerLink]="['/tag/',tag || 'all']">{{tag}}</a>
+                </div>
               </div>
               <a [routerLink]="['/blog/', top_like_blogs[0]?.slug || 'all']">
-                <h4>{{top_like_blogs[0]?.title}}</h4>
+                <h4 class="mb-0">{{top_like_blogs[0]?.title}}</h4>
               </a>
+              <div class="meta">
+                <span><i class="fa fa-user"></i>
+                  <a [routerLink]="['/author/',top_like_blogs[0]?.author?.username || 'all']">
+                    {{top_like_blogs[0]?.author?.username}}
+                  </a>
+                </span>
+                <span><i class="fa fa-calendar-o"></i>{{top_like_blogs[0]?.createdAt | date: 'dd/MM/yyyy'}}</span>
+              </div>
               <p class="text-2line">{{top_like_blogs[0]?.description}}</p>
             </div>
           </div>
@@ -147,7 +158,9 @@
               <div class="col-sm-8">
                 <div class="top-recipe-text">
                   <div *ngFor="let tag of blog?.tagList" style="display: inline-block;">
-                    <div class="cat-name mr-1">{{tag}}</div>
+                    <div class="cat-name">
+                      <a [routerLink]="['/tag/',tag || 'all']">{{tag}}</a>
+                    </div>
                   </div>
                   <a [routerLink]="['/blog/', blog?.slug || 'all']">
                     <h4>{{blog?.title}}</h4>
@@ -180,11 +193,21 @@
             </div>
             <div class="top-recipe-text">
               <div *ngFor="let tag of top_comment_blogs[0]?.tagList" style="display: inline-block;">
-                <div class="cat-name mr-1">{{tag}}</div>
+                <div class="cat-name">
+                  <a [routerLink]="['/tag/',tag || 'all']">{{tag}}</a>
+                </div>
               </div>
               <a [routerLink]="['/blog/', top_comment_blogs[0]?.slug || 'all']">
-                <h4>{{top_comment_blogs[0]?.title}}</h4>
+                <h4 class="mb-0">{{top_comment_blogs[0]?.title}}</h4>
               </a>
+              <div class="meta">
+                <span><i class="fa fa-user"></i>
+                  <a [routerLink]="['/author/',top_comment_blogs[0]?.author?.username || 'all']">
+                    {{top_comment_blogs[0]?.author?.username}}
+                  </a>
+                </span>
+                <span><i class="fa fa-calendar-o"></i>{{top_like_blogs[0]?.createdAt | date: 'dd/MM/yyyy'}}</span>
+              </div>
               <p class="text-2line">{{top_comment_blogs[0]?.description}}</p>
             </div>
           </div>
@@ -200,7 +223,9 @@
               <div class="col-sm-8">
                 <div class="top-recipe-text">
                   <div *ngFor="let tag of blog?.tagList" style="display: inline-block;">
-                    <div class="cat-name mr-1">{{tag}}</div>
+                    <div class="cat-name">
+                      <a [routerLink]="['/tag/',tag || 'all']">{{tag}}</a>
+                    </div>
                   </div>
                   <a [routerLink]="['/blog/', blog?.slug || 'all']">
                     <h4>{{blog?.title}}</h4>
@@ -278,14 +303,11 @@
   <!-- Categories Filter Section End -->
 
   <!-- Feature Recipe Section Begin -->
-  <section class="feature-recipe">
+  <!-- <section class="feature-recipe">
     <div class="section-title">
       <h5>Featured Recipes</h5>
     </div>
     <div class="container po-relative">
-      <!-- <div class="plus-icon">
-        <i class="fa fa-plus"></i>
-      </div> -->
       <div class="row">
         <div class="col-lg-6">
           <div class="fr-item">
@@ -313,7 +335,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
   <!-- Feature Recipe Section End -->
 
   <app-footer></app-footer>

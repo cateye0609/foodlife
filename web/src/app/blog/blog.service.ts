@@ -49,6 +49,14 @@ export class BlogService {
         }
     }
 
+    // Lấy blog theo query
+    get_blog_by_query(query: string, value: string) {
+        return this.http.get<BlogsListResponse>(`${API.ARTICLES}?${query}=${value}`)
+            .pipe(
+                catchError(err => this.commonService.handleError(err, "Lỗi trong lúc lấy danh sách bài viết!"))
+            );
+    }
+
     // Lấy top blog
     get_top_blogs() {
         return this.http.get<TopBlogModel>(API.TOP_ARTICLES)
