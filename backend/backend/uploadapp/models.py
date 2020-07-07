@@ -7,4 +7,4 @@ class File(TimestampedModel):
     description = models.CharField(max_length=255, default='')
 
     def __str__(self):
-        return '{} ({})'.format(self.description, self.file)
+        return '{} ({})'.format(self.description, self.link)
