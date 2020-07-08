@@ -7,6 +7,7 @@
 <app-search></app-search>
 <!-- Blog Section Begin -->
 <section class="blog-section spad">
+  <!-- <a [routerLink]="['/edit-blog',blog?.slug || 'all']" class="btn btn-primary">Sửa</a> -->
   <div class="blog-pic">
     <div class="container-fluid">
       <div class="row">
@@ -24,7 +25,9 @@
             <span id="author">{{blog?.author?.username}},</span><span>{{blog?.createdAt | date: 'd MMMM, y'}}</span>
             <h2>{{blog?.title}}</h2>
             <ul class="tags">
-              <li *ngFor="let tag of blog?.tagList">{{tag}}</li>
+              <li *ngFor="let tag of blog?.tagList">
+                <a [routerLink]="['/tag/',tag]">{{tag}}</a>
+              </li>
             </ul>
             <div class="blog-quote">
               <!-- <i class="fa fa-quote-left"></i> -->
@@ -33,7 +36,7 @@
             </div>
           </div>
           <div class="blog-desc">
-            <p>{{blog?.body}}</p>
+            <p [innerHTML]="blog?.body | safeHtml"></p>
           </div>
           <div class="like d-flex justify-content-end">
             <div [class.is-active]="blog?.favorited" class="heart" (click)="like_clicked()"></div>

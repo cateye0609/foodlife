@@ -6,7 +6,7 @@ import { API } from '../_api/apiURL';
 import { CommonService } from '../_services/common.service';
 import { AuthenticationService } from '../auth/auth.service';
 
-import { BlogModel, BlogResponse, BlogsListResponse, BlogCommentModel, TopBlogModel } from '../_models/blog.model';
+import { BlogModel, BlogResponse, BlogsListResponse, BlogCommentModel, TopBlogModel, TagModel } from '../_models/blog.model';
 
 declare interface CommentResponseModel {
     comment: {
@@ -24,14 +24,27 @@ export class BlogService {
     ) { }
 
     // Thêm bài viết mới
-    create_blog(body: string) {
+    create_blog(body: any) {
         let headers = new HttpHeaders({
             'Authorization': `Token ${localStorage.getItem('token')}`,
-            'Content-type': 'application/x-www-form-urlencoded'
+            'Content-type': 'application/json',
         });
         return this.http.post(API.ARTICLES, body, { headers: headers })
             .pipe(
                 catchError(err => this.commonService.handleError(err, "Lỗi trong lúc tạo bài viết!"))
+            );
+    }
+
+    // Sửa bài viết
+    edit_blog(body: any, slug: string) {
+        let headers = new HttpHeaders({
+            'Authorization': `Token ${localStorage.getItem('token')}`,
+            'Content-type': 'application/json',
+        });
+
+        return this.http.put(`${API.ARTICLES}/${slug}`, body, { headers: headers })
+            .pipe(
+                catchError(err => this.commonService.handleError(err, "Lỗi trong lúc sửa bài viết!"))
             );
     }
 
@@ -64,6 +77,12 @@ export class BlogService {
     // Lấy blog theo query
     get_blog_by_query(query: string, value: string) {
         return this.http.get<BlogsListResponse>(`${API.ARTICLES}?${query}=${value}`)
+            .pipe(
+                catchError(err => this.commonService.handleError(err, "Lỗi trong lúc lấy danh sách bài viết!"))
+            );
+    }
+    search_by_title_tag(title: string, tag: string) {
+        return this.http.get<BlogsListResponse>(`${API.ARTICLES}?search=${title}&tag=${tag}`)
             .pipe(
                 catchError(err => this.commonService.handleError(err, "Lỗi trong lúc lấy danh sách bài viết!"))
             );
@@ -131,6 +150,14 @@ export class BlogService {
         return this.http.delete<CommentResponseModel>(`${API.ARTICLES}/${slug}/comments/${comment_id}`, { headers: headers })
             .pipe(
                 catchError(err => this.commonService.handleError(err, "Lỗi khi xóa comment!"))
+            );
+    }
+
+    // Lấy danh sách tag
+    get_tags() {
+        return this.http.get<TagModel>(API.TAGS)
+            .pipe(
+                catchError(err => this.commonService.handleError(err, "Lỗi lấy danh sách tag!"))
             );
     }
 }

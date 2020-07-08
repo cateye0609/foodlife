@@ -1,0 +1,50 @@
+<!-- Page Preloder -->
+<div id="preloder">
+  <div class="loader"></div>
+</div>
+
+<app-header></app-header>
+
+<body>
+  <div class="container vertical-center justify-content-center">
+    <div class="card create-card">
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th class="text-center">#</th>
+            <th class="text-center">Tên</th>
+            <th class="text-center">Ngày tạo</th>
+            <th class="text-center">Cập nhật</th>
+            <th class="text-center">Lượt thích</th>
+            <th class="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let blog of my_blogs;let i = index">
+            <th scope="row" class="align-middle text-center">{{i+1}}</th>
+            <td class="align-middle">
+              <span class="table-text">
+                <a [routerLink]="['/blog/', blog?.slug || 'all']">{{blog?.title}}</a>
+              </span>
+            </td>
+            <td class="align-middle text-center">
+              <span class="table-text">{{blog?.createdAt | date:'dd-MM-yyyy'}}</span>
+            </td>
+            <td class="align-middle text-center">
+              <span class="table-text">{{blog?.updatedAt | date:'dd-MM-yyyy'}}</span>
+            </td>
+            <td class="align-middle text-center">
+              <span class="table-text">{{blog?.favoritesCount}}</span>
+            </td>
+            <td class="text-center">
+              <a [routerLink]="['/edit-blog',blog?.slug || 'all']"><i class="fa fa-edit" aria-hidden="true"></i>Sửa</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+  <search-modal></search-modal>
+</body>

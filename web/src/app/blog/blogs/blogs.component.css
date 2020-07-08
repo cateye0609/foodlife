@@ -26,3 +26,7 @@
     margin-right: .25rem;
     font-weight: 600;
 }
+
+.tags a {
+    color: white;
+}

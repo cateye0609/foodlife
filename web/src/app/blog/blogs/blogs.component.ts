@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { BlogService } from '../blog.service';
@@ -11,7 +11,8 @@ declare var $: any;
 @Component({
   selector: 'app-blogs',
   templateUrl: './blogs.component.html',
-  styleUrls: ['./blogs.component.css']
+  styleUrls: ['./blogs.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class BlogsComponent implements OnInit {
   // Ngx-pagination

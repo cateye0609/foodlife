@@ -1,18 +1,15 @@
 <!-- Hero Search Section Begin -->
 <div class="hero-search set-bg" data-setbg="assets/img/search-bg.jpg">
-    <div class="container">
-        <div class="filter-table">
-            <form action="#" class="filter-search">
-                <input type="text" placeholder="Tìm bài viết...">
-                <select nice-select id="category">
-                    <option value="">Danh mục</option>
-                </select>
-                <select nice-select id="tag">
-                    <option value="">Tags</option>
-                </select>
-                <button type="submit">Tìm</button>
-            </form>
-        </div>
+  <div class="container">
+    <div class="filter-table text-center">
+      <form action="#" class="filter-search">
+        <input type="text" name="keyword" placeholder="Tìm bài viết..." [(ngModel)]="keyword">
+        <select [(ngModel)]='tag' name="tag" nice-select id="tag">
+          <option *ngFor="let tag of tags" [value]="tag">{{tag}}</option>
+        </select>
+        <a [routerLink]="['/search', keyword, tag]" class="search">Tìm</a>
+      </form>
     </div>
+  </div>
 </div>
 <!-- Hero Search Section End -->

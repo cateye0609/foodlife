@@ -42,3 +42,7 @@ export interface TopBlogModel {
         top_comment: BlogModel[]
     };
 }
+
+export interface TagModel {
+    tags: string[];
+}

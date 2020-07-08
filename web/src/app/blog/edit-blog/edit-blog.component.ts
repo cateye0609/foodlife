@@ -4,16 +4,16 @@ import { BlogModel, BlogResponse } from '../../_models/blog.model';
 import { CommonService } from '../../_services/common.service';
 import { BlogService } from '../blog.service';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ImageModel } from '../../_models/image.model';
 import { environment } from '../../../environments/environment';
 
 @Component({
-  selector: 'app-create-blog',
-  templateUrl: './create-blog.component.html',
-  styleUrls: ['./create-blog.component.css']
+  selector: 'app-edit-blog',
+  templateUrl: './edit-blog.component.html',
+  styleUrls: ['./edit-blog.component.css']
 })
-export class CreateBlogComponent implements OnInit {
+export class EditBlogComponent implements OnInit {
 
   options: Object = {
     pastePlain: true,
@@ -56,16 +56,41 @@ export class CreateBlogComponent implements OnInit {
 
   blog: BlogModel;
   blog_image_file: any;
+
   constructor(
     private commonService: CommonService,
     private blogService: BlogService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {
     this.blog = {} as BlogModel;
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.loaddata();
+  }
+
+  loaddata() {
+    this.get_blog_slug();
+  }
+
+  // Lấy blog slug cần sửa
+  get_blog_slug() {
+    this.activatedRoute.params.subscribe(params => {
+      let slug = params['slug'];
+      this.get_blog(slug);
+    })
+  }
+
+  // Lấy blog cần sửa
+  get_blog(slug: string) {
+    this.blogService.get_blog(slug).subscribe(
+      (res: BlogResponse) => {
+        this.blog = res.article;
+      }
+    )
+  }
 
   onSubmit(data: BlogModel) {
     if (this.blog_image_file) {
@@ -75,14 +100,15 @@ export class CreateBlogComponent implements OnInit {
         },
         err => { },
         () => {
-          this.create_blog(data);
+          this.edit_blog(data);
         }
       )
+    } else {
+      this.edit_blog(data);
     }
   }
 
-  create_blog(data: BlogModel) {
-    // let body = `title=${data.title}&description=${data.description}&image=${this.blog.image}&body=${encodeURIComponent(this.blog.body)}`;
+  edit_blog(data: BlogModel) {
     let body = {
       article: {
         "title": data.title,
@@ -91,9 +117,9 @@ export class CreateBlogComponent implements OnInit {
         "body": this.blog.body
       }
     };
-    this.blogService.create_blog(body).subscribe(
+    this.blogService.edit_blog(body, this.blog.slug).subscribe(
       (res: BlogResponse) => {
-        this.toastr.success("Tạo bài viết mới thành công!");
+        this.toastr.success("Sửa bài viết thành công!");
         this.router.navigate(['/blog', res.article.slug]);
       }
     )

@@ -7,7 +7,7 @@ declare var $: any;
   styleUrls: ['./search-modal.component.css']
 })
 export class SearchModalComponent implements OnInit {
-
+  keyword: string;
   constructor() { }
 
   ngOnInit(): void {
@@ -23,4 +23,13 @@ export class SearchModalComponent implements OnInit {
     });
   }
 
+
+  // Search
+  search() {
+    $("#search-input").on('keyup', function (e) {
+      if (e.keyCode === 13) {
+        console.log($("#search-input").val());
+      }
+    });
+  }
 }

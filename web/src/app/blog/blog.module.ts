@@ -10,6 +10,10 @@ import { BlogsListComponent } from './blogs-list/blogs-list.component';
 import { BlogsByTagComponent } from './blogs-by-tag/blogs-by-tag.component';
 import { BlogsByAuthorComponent } from './blogs-by-author/blogs-by-author.component';
 import { CreateBlogComponent } from './create-blog/create-blog.component';
+import { BlogSearchComponent } from './blog-search/blog-search.component';
+import { EditBlogComponent } from './edit-blog/edit-blog.component';
+import { MyBlogsComponent } from './my-blogs/my-blogs.component';
+import { SafeHtml } from '../_pipes/safeHtml.pipe';
 
 import { BlogService } from './blog.service';
 
@@ -22,7 +26,11 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     BlogsListComponent,
     BlogsByTagComponent,
     BlogsByAuthorComponent,
-    CreateBlogComponent
+    CreateBlogComponent,
+    SafeHtml,
+    BlogSearchComponent,
+    EditBlogComponent,
+    MyBlogsComponent
   ],
   imports: [
     CommonModule,

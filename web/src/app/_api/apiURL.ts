@@ -7,5 +7,6 @@ export const API = {
 
     ARTICLES: `${environment.API_URL}/articles`,
     TOP_ARTICLES: `${environment.API_URL}/top-articles`,
+    TAGS: `${environment.API_URL}/tags`,
     UPLOAD_IMAGE: `${environment.API_URL}/upload/`
 };

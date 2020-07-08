@@ -1,10 +1,11 @@
 <!-- Search model -->
 <div class="search-model">
-    <div class="h-100 d-flex align-items-center justify-content-center">
-        <div class="search-close-switch">+</div>
-        <form class="search-model-form">
-            <input type="text" id="search-input" placeholder="Tìm kiếm...">
-        </form>
-    </div>
+  <div class="h-100 d-flex align-items-center justify-content-center">
+    <div class="search-close-switch">+</div>
+    <form class="search-model-form">
+      <input type="text" id="search-input" name="keyword" placeholder="Tìm kiếm..." ngModel [(ngModel)]="keyword">
+      <a [routerLink]="['/search', keyword,'']" class="button search-btn">Tìm kiếm</a>
+    </form>
+  </div>
 </div>
 <!-- Search model end -->
