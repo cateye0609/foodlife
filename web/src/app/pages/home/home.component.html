@@ -56,7 +56,7 @@
             <div class="pt-recipe-text">
               <span>{{blogs_list[0]?.createdAt | date: 'd MMMM, y'}}</span>
               <a [routerLink]="['/blog/', blogs_list[0]?.slug || 'all']">
-                <h3>{{blogs_list[0]?.title}}</h3>
+                <h3 class="text-3line">{{blogs_list[0]?.title}}</h3>
               </a>
             </div>
           </div>

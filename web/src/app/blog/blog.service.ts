@@ -48,6 +48,18 @@ export class BlogService {
             );
     }
 
+    // Xóa bài viết
+    delete_blog(slug: string) {
+        let headers = new HttpHeaders({
+            'Authorization': `Token ${localStorage.getItem('token')}`,
+            'Content-type': 'application/json',
+        });
+        return this.http.delete(`${API.ARTICLES}/${slug}`, { headers: headers })
+            .pipe(
+                catchError(err => this.commonService.handleError(err, "Lỗi trong lúc xoá bài viết!"))
+            );
+    }
+
     // Lấy tất cả bài viết
     get_all_blogs() {
         return this.http.get(API.ARTICLES)

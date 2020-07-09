@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { BlogService } from '../blog.service';
 import { BlogsListResponse, BlogModel } from '../../_models/blog.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-my-blogs',
@@ -15,6 +16,7 @@ export class MyBlogsComponent implements OnInit {
 
   constructor(
     private blogService: BlogService,
+    private toastr: ToastrService
   ) {
     this.my_blogs = [];
   }
@@ -35,5 +37,17 @@ export class MyBlogsComponent implements OnInit {
         this.loaded = true;
       }
     )
+  }
+
+  // Xóa blog
+  delete_blog(blog: BlogModel) {
+    if (confirm(`Xóa blog này?\n${blog.title}`)) {
+      this.blogService.delete_blog(blog.slug).subscribe(
+        res => {
+          this.toastr.success("Đã xóa blog!");
+          this.loaddata();
+        }
+      )
+    }
   }
 }

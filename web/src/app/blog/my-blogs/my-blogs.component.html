@@ -38,6 +38,9 @@
             </td>
             <td class="text-center">
               <a [routerLink]="['/edit-blog',blog?.slug || 'all']"><i class="fa fa-edit" aria-hidden="true"></i>Sửa</a>
+              <span class="ml-3 table-actions" (click)="delete_blog(blog)">
+                <i class="fa fa-trash" aria-hidden="true"></i>Xóa
+              </span>
             </td>
           </tr>
         </tbody>

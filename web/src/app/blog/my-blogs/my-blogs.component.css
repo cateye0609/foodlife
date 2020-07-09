@@ -4,7 +4,7 @@ body {
 }
 
 i {
-    margin-right: 0.6em;
+    margin-right: 0.4em;
 }
 
 .container {
@@ -34,6 +34,11 @@ table a {
     color: #353535;
 }
 
-table a:hover {
+table a:hover, table .table-actions:hover {
     color: #FC0254;
+}
+
+table .table-actions {
+    display: inline-block;
+    cursor: pointer;
 }
