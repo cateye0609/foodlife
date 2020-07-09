@@ -11,6 +11,8 @@ import { CommonService } from '../../_services/common.service';
 import { BlogService } from '../blog.service';
 import { ToastrService } from 'ngx-toastr';
 
+declare var $: any;
+
 @Component({
   selector: 'app-create-blog',
   templateUrl: './create-blog.component.html',
@@ -59,6 +61,7 @@ export class CreateBlogComponent implements OnInit {
 
   blog: BlogModel;
   blog_image_file: any;
+  image_type = 1;
   constructor(
     private commonService: CommonService,
     private blogService: BlogService,
@@ -104,5 +107,13 @@ export class CreateBlogComponent implements OnInit {
 
   image_change(event: any) {
     this.blog_image_file = event.target.files[0];
+  }
+
+  image_type_clicked(type: number) {
+    $('#image_type_group > .select-btn').on('click', function () {
+      this.image_type = type;
+      $('#image_type_group > .select-btn').removeClass('active');
+      $(this).addClass('active');
+    })
   }
 }

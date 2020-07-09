@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { BlogRoutingModule } from './blog-routing.module';
-import { NgxPaginationModule } from 'ngx-pagination';
 
 import { BlogsComponent } from './blogs/blogs.component';
 import { BlogsListComponent } from './blogs-list/blogs-list.component';
@@ -39,7 +38,6 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
   imports: [
     CommonModule,
     FormsModule,
-    NgxPaginationModule,
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
     BlogRoutingModule,

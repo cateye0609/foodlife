@@ -1,5 +1,5 @@
 <!-- Page Preloder -->
-<div id="preloder" *ngIf="blogs_list.length < 1">
+<div id="preloder" *ngIf="!loaded">
   <div class="loader"></div>
 </div>
 <app-header></app-header>
@@ -49,5 +49,8 @@
     </div>
   </div>
 </section>
+<div class="container h-50 vertical-center justify-content-center" *ngIf="blogs_list.length < 1">
+  <h2 class="text-center">Có vẻ bạn chưa theo dõi ai hết!</h2>
+</div>
 <app-footer></app-footer>
 <search-modal></search-modal>

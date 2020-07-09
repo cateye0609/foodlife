@@ -6,6 +6,7 @@ import { AuthGuard } from '../_guard/auth.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { UserinfoComponent } from './userinfo/userinfo.component';
+import { UsersListComponent } from './users-list/users-list.component';
 
 const routes: Routes = [
     {
@@ -21,7 +22,8 @@ const routes: Routes = [
         children: [
             { path: ':username', component: UserinfoComponent }
         ]
-    }
+    },
+    { path: 'users-list', component: UsersListComponent }
 ];
 
 @NgModule({

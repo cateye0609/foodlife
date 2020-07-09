@@ -11,6 +11,7 @@ import { BlogService } from '../blog.service';
 export class FeedComponent implements OnInit {
   @Input('data') blogs_list: BlogModel[] = [];
   page: number = 1;
+  loaded = false;
 
   constructor(
     private blogService: BlogService,
@@ -29,6 +30,7 @@ export class FeedComponent implements OnInit {
     this.blogService.get_blogs_newfeed().subscribe(
       (res: BlogsListResponse) => {
         this.blogs_list = res.articles;
+        this.loaded = true;
       }
     )
   }

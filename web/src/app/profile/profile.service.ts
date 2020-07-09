@@ -3,9 +3,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 
 import { API } from '../_api/apiURL';
+import { environment } from '../../environments/environment';
 import { CommonService } from '../_services/common.service';
 import { AuthenticationService } from '../auth/auth.service';
 
+import { UsersListResponseModel } from '../_models/user.model';
 @Injectable()
 export class ProfileService {
 
@@ -14,6 +16,14 @@ export class ProfileService {
         private commonService: CommonService,
         private authService: AuthenticationService
     ) { }
+
+    // Lấy danh sách tất cả user
+    get_all_users() {
+        return this.http.get<UsersListResponseModel>(`${environment.API_URL}/profiles`)
+            .pipe(
+                catchError(err => this.commonService.handleError(err, "Lỗi lấy danh sách user!"))
+            );
+    }
 
     // Lấy thông tin user
     get_userinfo(username: string) {

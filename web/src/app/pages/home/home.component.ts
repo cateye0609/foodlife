@@ -43,7 +43,9 @@ export class HomeComponent implements OnInit {
   loaddata() {
     this.get_blogs_list();
     this.get_top_blogs();
-    this.get_followed_blogs();
+    if (this.is_loggedIn) {
+      this.get_followed_blogs();
+    }
   }
 
   // Lấy danh sách blog

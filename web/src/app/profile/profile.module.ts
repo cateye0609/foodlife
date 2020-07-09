@@ -7,12 +7,13 @@ import { SharedModule } from '../shared/shared.module';
 import { ProfileComponent } from './profile/profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { UserinfoComponent } from './userinfo/userinfo.component';
+import { UsersListComponent } from './users-list/users-list.component';
 
 import { ProfileService } from './profile.service';
 
 
 @NgModule({
-  declarations: [ProfileComponent, EditProfileComponent, UserinfoComponent],
+  declarations: [ProfileComponent, EditProfileComponent, UserinfoComponent, UsersListComponent],
   imports: [
     CommonModule,
     FormsModule,

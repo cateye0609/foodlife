@@ -13,3 +13,6 @@ export interface UserModel {
 export interface UserResponseModel {
     profile: UserModel;
 }
+export interface UsersListResponseModel {
+    profiles: UserModel[];
+}

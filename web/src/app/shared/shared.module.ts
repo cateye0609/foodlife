@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NiceSelectModule } from "ng-nice-select";
 import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -20,14 +21,16 @@ import { SearchComponent } from './components/search/search.component';
     CommonModule,
     RouterModule,
     NiceSelectModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ],
   exports: [
     CommonModule,
     HeaderComponent,
     FooterComponent,
     SearchModalComponent,
-    SearchComponent
+    SearchComponent,
+    NgxPaginationModule
   ]
 })
 export class SharedModule { }

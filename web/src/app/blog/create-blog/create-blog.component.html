@@ -8,20 +8,27 @@
 <body>
   <div class="container vertical-center justify-content-center">
     <div class="card create-card">
-      <form id="blcreateBlogForm" #createBlog="ngForm" (ngSubmit)="onSubmit(createBlog.value)">
+      <form id="createBlogForm" #createBlog="ngForm" (ngSubmit)="onSubmit(createBlog.value)">
         <div class="form-group">
           <label for="title">Tiêu đề</label>
-          <input type="text" id="title" name="title" class="form-control" minlength="5" required ngModel
-            #titleControl="ngModel" [class.is-invalid]="titleControl.invalid && titleControl.touched">
+          <input type="text" id="title" name="title" class="form-control" aria-describedby="titleHelpBlock"
+            minlength="5" required ngModel #titleControl="ngModel"
+            [class.is-invalid]="titleControl.invalid && titleControl.touched">
+          <small id="titleHelpBlock" class="form-text text-muted">
+            Tiêu đề của bạn phải có ít nhất 5 ký tự
+          </small>
           <div class="invalid-feedback d-block" role="alert" *ngIf="titleControl.invalid && titleControl.dirty">
             Tiêu đề của bạn đâu?
           </div>
         </div>
         <div class="form-group">
           <label for="description">Mô tả</label>
-          <textarea id="description" name="description" class="form-control" minlength="5" rows="3" required ngModel
-            #descriptionControl="ngModel"
+          <textarea id="description" name="description" class="form-control" aria-describedby="descriptionHelpBlock"
+            minlength="5" rows="3" required ngModel #descriptionControl="ngModel"
             [class.is-invalid]="descriptionControl.invalid && descriptionControl.touched"></textarea>
+          <small id="descriptionHelpBlock" class="form-text text-muted">
+            Mô tả của bạn phải có ít nhất 5 ký tự
+          </small>
           <div class="invalid-feedback d-block" role="alert"
             *ngIf="descriptionControl.invalid && descriptionControl.dirty">
             Điền đầy đủ cả mô tả nữa chứ!
@@ -29,10 +36,20 @@
         </div>
         <div class="form-group">
           <label for="image">Ảnh</label>
+          <!-- <div id="image_type_group">
+            <button type="button" class="select-btn mb-2 mr-1 active" (click)="image_type_clicked(1)">Từ file</button>
+            <button type="button" class="select-btn mb-2" (click)="image_type_clicked(2)">Từ url</button>
+          </div>
+          <input type="text" name="image_url" class="form-control" required ngModel #imageurlControl="ngModel"
+            [class.is-invalid]="imageurlControl?.invalid && imageurlControl?.touched" *ngIf="image_type==2">
+          <div class="invalid-feedback d-block" role="alert"
+            *ngIf="imageurlControl?.invalid && imageurlControl?.touched">
+            Thêm hình nữa bạn ơi
+          </div> -->
           <input type="file" accept="image/*" id="image" name="image" class="form-control" required ngModel
-            #imageControl="ngModel" [class.is-invalid]="imageControl.invalid && imageControl.touched"
+            #imageControl="ngModel" [class.is-invalid]="imageControl?.invalid && imageControl?.touched"
             (change)="image_change($event)">
-          <div class="invalid-feedback d-block" role="alert" *ngIf="imageControl.invalid && imageControl.touched">
+          <div class="invalid-feedback d-block" role="alert" *ngIf="imageControl?.invalid && imageControl?.touched">
             Thêm hình nữa bạn ơi
           </div>
         </div>
@@ -40,8 +57,7 @@
           <label for="body">Nội dung</label>
           <div [froalaEditor]="options" [(froalaModel)]="blog.body"></div>
         </div>
-        <input type="submit" class="btn btn-success" form="blcreateBlogForm" value="Tạo"
-          [disabled]="createBlog.invalid">
+        <input type="submit" class="btn btn-success" form="createBlogForm" value="Tạo" [disabled]="createBlog.invalid">
       </form>
     </div>
   </div>
