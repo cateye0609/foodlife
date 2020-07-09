@@ -3,7 +3,7 @@
 
 <body>
   <!-- Page Preloder -->
-  <div id="preloder">
+  <div id="preloder" *ngIf="!loaded">
     <div class="loader"></div>
   </div>
 
@@ -112,6 +112,73 @@
     </div>
   </section>
   <!-- Page Top Recipe Section End -->
+
+  <!-- Followed Author Section Begin -->
+  <section class="top-recipe spad" *ngIf="followed_authors_blogs?.length > 1">
+    <div class="section-title">
+      <h5>
+        <a routerLink="/feed">
+          Từ các tác giả đang theo dõi <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        </a>
+      </h5>
+    </div>
+    <div class="container po-relative">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="top-recipe-item large-item">
+            <div class="top-recipe-img" [style.background-image]="'url(' + followed_authors_blogs[0]?.image + ')'">
+              <i class="fa fa-plus"></i>
+            </div>
+            <div class="top-recipe-text">
+              <div *ngFor="let tag of followed_authors_blogs[0]?.tagList" style="display: inline-block;">
+                <div class="cat-name">
+                  <a [routerLink]="['/tag/',tag || 'all']">{{tag}}</a>
+                </div>
+              </div>
+              <a [routerLink]="['/blog/', followed_authors_blogs[0]?.slug || 'all']">
+                <h4 class="mb-0">{{followed_authors_blogs[0]?.title}}</h4>
+              </a>
+              <div class="meta">
+                <span><i class="fa fa-user"></i>
+                  <a [routerLink]="['/author/',followed_authors_blogs[0]?.author?.username || 'all']">
+                    {{followed_authors_blogs[0]?.author?.username}}
+                  </a>
+                </span>
+                <span><i
+                    class="fa fa-calendar-o"></i>{{followed_authors_blogs[0]?.createdAt | date: 'dd/MM/yyyy'}}</span>
+              </div>
+              <p class="text-2line">{{followed_authors_blogs[0]?.description}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="top-recipe-item" *ngFor="let blog of followed_authors_blogs.slice(1);let i=index">
+            <div class="row" *ngIf="i < 4">
+              <div class="col-sm-4">
+                <div class="top-recipe-img" [style.background-image]="'url(' + blog?.image + ')'">
+                  <i class="fa fa-plus"></i>
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <div class="top-recipe-text">
+                  <div *ngFor="let tag of blog?.tagList" style="display: inline-block;">
+                    <div class="cat-name">
+                      <a [routerLink]="['/tag/',tag || 'all']">{{tag}}</a>
+                    </div>
+                  </div>
+                  <a [routerLink]="['/blog/', blog?.slug || 'all']">
+                    <h4>{{blog?.title}}</h4>
+                  </a>
+                  <p class="text-2line">{{blog?.description}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Followed Author Section End -->
 
   <!-- Top Like Section Begin -->
   <section class="top-recipe spad">

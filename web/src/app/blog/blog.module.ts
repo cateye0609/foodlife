@@ -13,8 +13,10 @@ import { CreateBlogComponent } from './create-blog/create-blog.component';
 import { BlogSearchComponent } from './blog-search/blog-search.component';
 import { EditBlogComponent } from './edit-blog/edit-blog.component';
 import { MyBlogsComponent } from './my-blogs/my-blogs.component';
-import { SafeHtml } from '../_pipes/safeHtml.pipe';
+import { SuggestsComponent } from './suggests/suggests.component';
+import { FeedComponent } from './feed/feed.component';
 
+import { SafeHtml } from '../_pipes/safeHtml.pipe';
 import { BlogService } from './blog.service';
 
 import 'froala-editor/js/plugins.pkgd.min.js'; // Import toàn bộ Froala plugin (Có thể import riêng lẻ từng cái)
@@ -30,7 +32,9 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     SafeHtml,
     BlogSearchComponent,
     EditBlogComponent,
-    MyBlogsComponent
+    MyBlogsComponent,
+    SuggestsComponent,
+    FeedComponent
   ],
   imports: [
     CommonModule,

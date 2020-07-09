@@ -1,0 +1,88 @@
+body {
+    background-color: #eee!important;
+}
+
+i {
+    margin-right: 0.6em;
+}
+
+.vertical-center {
+    min-height: 100%;
+    /* Fallback for browsers do NOT support vh unit */
+    min-height: 100vh;
+    /* These two lines are counted as one :-)       */
+    display: flex;
+    align-items: center;
+}
+
+.profile-card {
+    border-radius: 10px;
+    padding: 2rem;
+    -webkit-box-shadow: 10px 10px 20px -4px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 20px -4px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 20px -4px rgba(0, 0, 0, 0.75);
+}
+
+.avatar-section img {
+    width: 500px;
+    /* height: 500px; */
+    border-radius: 10px;
+}
+
+.info-section {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.info-section ul {
+    list-style: none;
+}
+
+.info-section h2 {
+    font-weight: 600;
+}
+
+.followed:focus, .unfollow:focus {
+    box-shadow: none;
+}
+
+.followed {
+    float: right;
+    background-color: #009E30;
+    color: white;
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+
+.followed:hover {
+    background-color: #FC0254;
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    /* box-shadow: 0 0 0 0.2rem rgba(252, 2, 84, .25); */
+    ;
+}
+
+.unfollow {
+    float: right;
+    background-color: #FC0254;
+    color: white;
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+
+.unfollow:hover {
+    background-color: #009E30;
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    /* box-shadow: 0 0 0 0.2rem rgba(0, 158, 48, .25); */
+}
+
+/* @media only screen and (max-width: 768px) {
+    .avatar-section img {
+        width: 200;
+        height: 200px;
+        border-radius: 10px;
+    }
+} */

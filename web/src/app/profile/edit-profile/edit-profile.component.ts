@@ -42,7 +42,7 @@ export class EditProfileComponent implements OnInit {
 
   // Lấy thông tin user
   get_userinfo() {
-    this.profileService.get_userinfo().subscribe(
+    this.profileService.get_userinfo(localStorage.getItem('username')).subscribe(
       (res: UserResponseModel) => {
         this.userinfo = res.profile;
         this.avatar_url = this.userinfo.avatar;

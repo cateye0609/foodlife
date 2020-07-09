@@ -1,0 +1,8 @@
+.similar-item img {
+    width: 150px;
+    height: 100px;
+}
+
+.similar-text a:hover h6 {
+    color: #FC0254;
+}

@@ -7,7 +7,7 @@
 <!-- Recipe Section Begin -->
 <section class="recipe-section spad">
   <div class="container">
-    <h1 class="author">Tác giả: <a [routerLink]="['/users',author || 'all']">{{author}}</a></h1>
+    <h1 class="page-title">Bài viết từ các tác giả bạn theo dõi</h1>
     <div class="row">
       <div class="col-lg-4 col-sm-6" *ngFor="let blog of blogs_list | paginate: { itemsPerPage: 6, currentPage: page }">
         <div class="recipe-item">

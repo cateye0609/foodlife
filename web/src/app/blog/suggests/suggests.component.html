@@ -1,17 +1,21 @@
 <!-- Similar Recipe Section Begin -->
 <section class="similar-recipe spad">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-6">
-                <div class="similar-item">
-                    <a href="#"><img src="assets/img/cat-feature/small-7.jpg" alt=""></a>
-                    <div class="similar-text">
-                        <div class="cat-name">Vegan</div>
-                        <h6>Italian Tiramisu with Coffe</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-6" *ngFor="let blog of same_blogs; let i=index">
+        <div class="similar-item" *ngIf="i < 4">
+          <a [routerLink]="['/blog/', blog?.slug || 'all']">
+            <img src={{blog?.image}} alt="blog-image" onerror="this.src='assets/img/no-image.jpg'">
+          </a>
+          <div class="similar-text">
+            <!-- <div class="cat-name" *ngFor="let tag of blog?.tagList">
+              <a [routerLink]="['/tag/',tag]">{{tag}}</a>
+            </div> -->
+            <a [routerLink]=" ['/blog/', blog?.slug || 'all']"><h6 class="text-3line">{{blog?.title}}</h6></a>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-lg-3 col-md-6">
                 <div class="similar-item">
                     <a href="#"><img src="assets/img/cat-feature/small-6.jpg" alt=""></a>
                     <div class="similar-text">
@@ -37,8 +41,8 @@
                         <h6>Smoked Salmon mini Sandwiches with Onion</h6>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div> -->
     </div>
+  </div>
 </section>
 <!-- Similar Recipe Section End -->

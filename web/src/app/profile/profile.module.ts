@@ -6,12 +6,13 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { ProfileComponent } from './profile/profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { UserinfoComponent } from './userinfo/userinfo.component';
 
 import { ProfileService } from './profile.service';
 
 
 @NgModule({
-  declarations: [ProfileComponent, EditProfileComponent],
+  declarations: [ProfileComponent, EditProfileComponent, UserinfoComponent],
   imports: [
     CommonModule,
     FormsModule,

@@ -27,6 +27,14 @@
     font-weight: 600;
 }
 
+#author a {
+    color: #FC0254;
+}
+
+#author a:hover {
+    color: #009E30;
+}
+
 .tags a {
     color: white;
 }

@@ -13,6 +13,7 @@ export class BlogsByTagComponent implements OnInit {
   @Input('data') blogs_list: BlogModel[] = [];
   page: number = 1;
 
+  tag: string;
   constructor(
     private blogService: BlogService,
     private activatedRoute: ActivatedRoute
@@ -32,8 +33,8 @@ export class BlogsByTagComponent implements OnInit {
   get_blog_tag() {
     this.activatedRoute.params.subscribe(
       (params) => {
-        let tag = params['tag'];
-        this.get_blog_by_tag(tag);
+        this.tag = params['tag'];
+        this.get_blog_by_tag(this.tag);
       }
     )
   }

@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
   }
 
   get_userinfo() {
-    this.profileService.get_userinfo().subscribe(
+    this.profileService.get_userinfo(localStorage.getItem('username')).subscribe(
       (res: UserResponseModel) => {
         this.userinfo = res.profile;
       }

@@ -2,3 +2,17 @@
     width: 100%;
     height: 300px;
 }
+
+.author {
+    font-size: 2em;
+    margin-bottom: 0.5rem;
+}
+
+.author a {
+    text-decoration: none;
+    color: #FC0254;
+}
+
+.author a:hover {
+    color: #009E30;
+}

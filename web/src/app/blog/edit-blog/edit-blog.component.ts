@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+
+import { environment } from '../../../environments/environment';
 import { API } from '../../_api/apiURL';
+
 import { BlogModel, BlogResponse } from '../../_models/blog.model';
+import { ImageModel } from '../../_models/image.model';
+
 import { CommonService } from '../../_services/common.service';
 import { BlogService } from '../blog.service';
 import { ToastrService } from 'ngx-toastr';
-import { Router, ActivatedRoute } from '@angular/router';
-import { ImageModel } from '../../_models/image.model';
-import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-edit-blog',

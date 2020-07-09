@@ -11,6 +11,7 @@ import { CreateBlogComponent } from './create-blog/create-blog.component';
 import { EditBlogComponent } from './edit-blog/edit-blog.component';
 import { BlogSearchComponent } from './blog-search/blog-search.component';
 import { MyBlogsComponent } from './my-blogs/my-blogs.component';
+import { FeedComponent } from './feed/feed.component';
 
 const routes: Routes = [
     { path: 'blogs', component: BlogsListComponent },
@@ -20,7 +21,8 @@ const routes: Routes = [
     { path: 'create-blog', component: CreateBlogComponent, canActivate: [AuthGuard] },
     { path: 'edit-blog/:slug', component: EditBlogComponent, canActivate: [AuthGuard] },
     { path: 'search/:keyword/:tag', component: BlogSearchComponent },
-    { path: 'my-blog', component: MyBlogsComponent, canActivate: [AuthGuard] }
+    { path: 'my-blog', component: MyBlogsComponent, canActivate: [AuthGuard] },
+    { path: 'feed', component: FeedComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

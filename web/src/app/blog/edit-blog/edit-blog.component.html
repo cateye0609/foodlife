@@ -11,18 +11,31 @@
       <form id="blcreateBlogForm" #createBlog="ngForm" (ngSubmit)="onSubmit(createBlog.value)">
         <div class="form-group">
           <label for="title">Tiêu đề</label>
-          <input type="text" id="title" name="title" class="form-control" required [(ngModel)]="blog.title">
+          <input type="text" id="title" name="title" class="form-control" required [(ngModel)]="blog.title"
+            #titleControl="ngModel" [class.is-invalid]="titleControl.invalid && titleControl.touched">
+          <div class="invalid-feedback d-block" role="alert" *ngIf="titleControl.invalid && titleControl.dirty">
+            Tiêu đề của bạn đâu?
+          </div>
         </div>
         <div class="form-group">
           <label for="description">Mô tả</label>
           <textarea id="description" name="description" class="form-control" rows="3" required
-            [(ngModel)]="blog.description"></textarea>
+            [(ngModel)]="blog.description" #descriptionControl="ngModel"
+            [class.is-invalid]="descriptionControl.invalid && descriptionControl.touched"></textarea>
+          <div class="invalid-feedback d-block" role="alert"
+            *ngIf="descriptionControl.invalid && descriptionControl.dirty">
+            Điền đầy đủ cả mô tả nữa chứ!
+          </div>
         </div>
         <div class="form-group">
           <label for="image">Ảnh</label>
           <img src={{blog.image}} alt="blog_image" class="blog-image mb-2">
           <input type="file" accept="image/*" id="image" name="image" class="form-control" ngModel
-            (change)="image_change($event)">
+            (change)="image_change($event)" #imageControl="ngModel"
+            [class.is-invalid]="imageControl.invalid && imageControl.touched">
+          <div class="invalid-feedback d-block" role="alert" *ngIf="imageControl.invalid && imageControl.touched">
+            Thêm hình nữa bạn ơi
+          </div>
         </div>
         <div class="form-group">
           <label for="body">Nội dung</label>

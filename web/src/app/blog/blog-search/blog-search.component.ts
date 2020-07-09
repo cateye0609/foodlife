@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { BlogService } from '../blog.service';
 import { ActivatedRoute } from '@angular/router';
+
+import { BlogService } from '../blog.service';
 import { BlogsListResponse, BlogModel } from '../../_models/blog.model';
 
 @Component({
@@ -12,6 +13,10 @@ export class BlogSearchComponent implements OnInit {
   @Input('data') blogs_list: BlogModel[] = [];
   page: number = 1;
 
+  keyword: string;
+  tag: string;
+
+  found = false;
   constructor(
     private blogService: BlogService,
     private activatedRoute: ActivatedRoute
@@ -29,12 +34,12 @@ export class BlogSearchComponent implements OnInit {
   get_search_keyword() {
     this.activatedRoute.params.subscribe(
       (params) => {
-        let keyword = params['keyword'];
-        let tag = params['tag'];
-        if (tag != '') {
-          this.get_blogs_by_keyword_tag(keyword, tag);
+        this.keyword = params['keyword'];
+        this.tag = params['tag'];
+        if (this.tag != '') {
+          this.get_blogs_by_keyword_tag(this.keyword, this.tag);
         } else {
-          this.get_blogs_by_keyword(keyword);
+          this.get_blogs_by_keyword(this.keyword);
         }
       }
     )
@@ -45,14 +50,17 @@ export class BlogSearchComponent implements OnInit {
     this.blogService.get_blog_by_query('search', keyword).subscribe(
       (res: BlogsListResponse) => {
         this.blogs_list = res.articles;
+        this.found = true;
       }
     )
   }
+
   // Lấy danh sách bài viết theo keyword và tag
   get_blogs_by_keyword_tag(keyword: string, tag: string) {
     this.blogService.search_by_title_tag(keyword, tag).subscribe(
       (res: BlogsListResponse) => {
         this.blogs_list = res.articles;
+        this.found = true;
       }
     )
   }

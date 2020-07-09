@@ -88,6 +88,17 @@ export class BlogService {
             );
     }
 
+    // Lấy blog theo các followed author
+    get_blogs_newfeed() {
+        let headers = new HttpHeaders({
+            'Authorization': `Token ${localStorage.getItem('token')}`,
+        });
+        return this.http.get(`${API.ARTICLES}/feed/`, { headers: headers })
+            .pipe(
+                catchError(err => this.commonService.handleError(err, "Lỗi trong lúc lấy danh sách bài viết!"))
+            );
+    }
+
     // Lấy top blog
     get_top_blogs() {
         return this.http.get<TopBlogModel>(API.TOP_ARTICLES)

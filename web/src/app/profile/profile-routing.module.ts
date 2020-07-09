@@ -5,6 +5,7 @@ import { AuthGuard } from '../_guard/auth.guard';
 
 import { ProfileComponent } from './profile/profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { UserinfoComponent } from './userinfo/userinfo.component';
 
 const routes: Routes = [
     {
@@ -13,6 +14,12 @@ const routes: Routes = [
             { path: '', redirectTo: 'login', pathMatch: 'full' },
             { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
             { path: 'edit', component: EditProfileComponent, canActivate: [AuthGuard] },
+        ]
+    },
+    {
+        path: 'users',
+        children: [
+            { path: ':username', component: UserinfoComponent }
         ]
     }
 ];

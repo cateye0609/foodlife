@@ -1,0 +1,44 @@
+<!-- Page Preloder -->
+<div id="preloder" *ngIf="!userinfo">
+  <div class="loader"></div>
+</div>
+
+<app-header></app-header>
+
+<body>
+  <div class="container vertical-center justify-content-center">
+    <div class="card profile-card">
+      <div class="row">
+        <div class="col-md-5 avatar-section">
+          <img src={{userinfo?.avatar}} alt="avatar" class="img-fluid"
+            onerror="this.src='https://static.productionready.io/images/smiley-cyrus.jpg'">
+        </div>
+        <div class="col-md-7">
+          <div class="card-body h-100">
+            <a [routerLink]="['/author/',userinfo?.username || 'all']" class="btn user-btn">Bài viết</a>
+            <button class="btn user-btn" (click)="follow_clicked()" *ngIf="current_username!=userinfo?.username"
+              [ngClass]="(userinfo?.following)?'followed':'unfollow'">
+              {{userinfo?.following == true ? 'Đang theo dõi':(userinfo?.following==false ? 'Theo dõi' : '')}}
+            </button>
+            <div class="info-section">
+              <h2 class="card-title">{{userinfo?.username}}</h2>
+              <p class="card-text">{{userinfo?.bio}}</p>
+              <ul>
+                <li><i class="fa fa-transgender" aria-hidden="true"></i>
+                  {{userinfo?.gender == 'M' ? 'Nam': (userinfo?.gender == 'F' ? 'Nữ' : '')}}
+                </li>
+                <li><i class="fa fa-calendar" aria-hidden="true"></i>{{userinfo?.birthday | date: 'dd/MM/yyyy'}}</li>
+                <!-- <li><i class="fa fa-phone" aria-hidden="true"></i>012345679</li> -->
+                <li><i class="fa fa-envelope" aria-hidden="true"></i>{{userinfo?.email}}</li>
+                <!-- <li><i class="fa fa-home" aria-hidden="true"></i>asasdsdas</li> -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+  <search-modal></search-modal>
+</body>

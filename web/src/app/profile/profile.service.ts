@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router';
-
 import { catchError } from 'rxjs/operators';
 
 import { API } from '../_api/apiURL';
 import { CommonService } from '../_services/common.service';
+import { AuthenticationService } from '../auth/auth.service';
 
 @Injectable()
 export class ProfileService {
@@ -13,13 +12,20 @@ export class ProfileService {
     constructor(
         private http: HttpClient,
         private commonService: CommonService,
-        private router: Router,
+        private authService: AuthenticationService
     ) { }
 
     // Lấy thông tin user
-    get_userinfo() {
-        let username = localStorage.getItem('username');
-
+    get_userinfo(username: string) {
+        if (this.authService.is_loggedIn()) {
+            let headers = new HttpHeaders({
+                'Authorization': `Token ${localStorage.getItem('token')}`,
+            });
+            return this.http.get(API.PROFILE + username, { headers: headers })
+                .pipe(
+                    catchError(err => this.commonService.handleError(err, "Lỗi trong lúc lấy thông tin user!"))
+                );
+        }
         return this.http.get(API.PROFILE + username)
             .pipe(
                 catchError(err => this.commonService.handleError(err, "Lỗi trong lúc lấy thông tin user!"))
@@ -36,6 +42,32 @@ export class ProfileService {
         return this.http.put(API.USER, body, { headers: headers })
             .pipe(
                 catchError(err => this.commonService.handleError(err, "Lỗi cập nhật user!"))
+            );
+    }
+
+    // Follow user
+    follow_user(username: string) {
+        let headers = new HttpHeaders({
+            'Authorization': `Token ${localStorage.getItem('token')}`,
+            'Content-type': 'application/x-www-form-urlencoded',
+        });
+
+        return this.http.post(`${API.PROFILE}${username}/follow`, null, { headers: headers })
+            .pipe(
+                catchError(err => this.commonService.handleError(err, "Lỗi follow user!"))
+            );
+    }
+
+    // Unfollow user
+    unfollow_user(username: string) {
+        let headers = new HttpHeaders({
+            'Authorization': `Token ${localStorage.getItem('token')}`,
+            'Content-type': 'application/x-www-form-urlencoded',
+        });
+
+        return this.http.delete(`${API.PROFILE}${username}/follow`, { headers: headers })
+            .pipe(
+                catchError(err => this.commonService.handleError(err, "Lỗi follow user!"))
             );
     }
 }

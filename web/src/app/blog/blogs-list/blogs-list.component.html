@@ -1,5 +1,5 @@
 <!-- Page Preloder -->
-<div id="preloder">
+<div id="preloder" *ngIf="blogs_list.length < 1">
   <div class="loader"></div>
 </div>
 <app-header></app-header>
@@ -13,7 +13,8 @@
           <!-- Feature image -->
           <a [routerLink]="['/blog/', blog.slug]">
             <div class="img-wrapper">
-              <img src={{blog?.image}} alt="feature-img" class="feature-img">
+              <img src={{blog?.image}} alt="feature-img" class="feature-img"
+                onerror="this.src='assets/img/no-image.jpg'">
             </div>
           </a>
           <div class="ri-text blog-card">

@@ -14,6 +14,10 @@ export class AppComponent implements OnInit {
   routeChange() {
     $(".loader").fadeOut();
     $("#preloder").delay(200).fadeOut("slow");
+    $(".mobile-menu").slicknav({
+      prependTo: '#mobile-menu-wrap',
+      allowParentLinks: true
+    });
   }
 
   // Đổi bg css
@@ -23,7 +27,7 @@ export class AppComponent implements OnInit {
       $(this).css('background-image', 'url(' + bg + ')');
     });
   }
-  
+
   ngOnInit() {
     this.setbg();
   }

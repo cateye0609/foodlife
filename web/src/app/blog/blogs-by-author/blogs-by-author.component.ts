@@ -12,7 +12,7 @@ import { BlogService } from '../blog.service';
 export class BlogsByAuthorComponent implements OnInit {
   @Input('data') blogs_list: BlogModel[] = [];
   page: number = 1;
-
+  author: string;
   constructor(
     private blogService: BlogService,
     private activatedRoute: ActivatedRoute
@@ -32,8 +32,8 @@ export class BlogsByAuthorComponent implements OnInit {
   get_blog_author() {
     this.activatedRoute.params.subscribe(
       (params) => {
-        let author = params['author'];
-        this.get_blog_by_author(author);
+        this.author = params['author'];
+        this.get_blog_by_author(this.author);
       }
     )
   }

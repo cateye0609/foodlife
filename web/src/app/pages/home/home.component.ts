@@ -14,10 +14,13 @@ export class HomeComponent implements OnInit {
   username: string = localStorage.getItem('username');
 
   is_loggedIn = this.authService.is_loggedIn();
+
   blogs_list: BlogModel[];
+  followed_authors_blogs: BlogModel[];
   top_like_blogs: BlogModel[];
   top_comment_blogs: BlogModel[];
 
+  loaded = false;
   constructor(
     private authService: AuthenticationService,
     private blogService: BlogService
@@ -25,6 +28,7 @@ export class HomeComponent implements OnInit {
     this.blogs_list = [];
     this.top_like_blogs = [];
     this.top_comment_blogs = [];
+    this.followed_authors_blogs = []
   }
 
   ngOnInit(): void {
@@ -39,6 +43,7 @@ export class HomeComponent implements OnInit {
   loaddata() {
     this.get_blogs_list();
     this.get_top_blogs();
+    this.get_followed_blogs();
   }
 
   // Lấy danh sách blog
@@ -46,8 +51,9 @@ export class HomeComponent implements OnInit {
     this.blogService.get_all_blogs().subscribe(
       (res: BlogsListResponse) => {
         this.blogs_list = res.articles;
+        this.loaded = true;
       }
-    )
+    );
   }
 
   // Lấy danh sách top bài viết
@@ -56,6 +62,15 @@ export class HomeComponent implements OnInit {
       (res: TopBlogModel) => {
         this.top_like_blogs = res.article.top_like;
         this.top_comment_blogs = res.article.top_comment;
+      }
+    );
+  }
+
+  // Lấy danh sách bài viết từ các tác giả đang theo dõi
+  get_followed_blogs() {
+    this.blogService.get_blogs_newfeed().subscribe(
+      (res: BlogsListResponse) => {
+        this.followed_authors_blogs = res.articles;
       }
     )
   }
