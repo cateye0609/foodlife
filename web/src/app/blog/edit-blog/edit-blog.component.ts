@@ -99,7 +99,7 @@ export class EditBlogComponent implements OnInit {
     if (this.blog_image_file) {
       this.commonService.upload_image(this.blog_image_file, 'blog feature').subscribe(
         (res: ImageModel) => {
-          this.blog.image = `${environment.BASE_URL}${res.link}`;
+          this.blog.image = res.link;
         },
         err => { },
         () => {

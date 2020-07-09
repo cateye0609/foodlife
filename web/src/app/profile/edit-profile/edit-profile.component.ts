@@ -55,8 +55,8 @@ export class EditProfileComponent implements OnInit {
     if (this.avatarFile) {
       this.commonService.upload_image(this.avatarFile, 'avatar').subscribe(
         (res: ImageModel) => {
-          this.avatar_url = `${environment.BASE_URL}${res.link}`;
-          this.userinfo.avatar = `${environment.BASE_URL}${res.link}`;
+          this.avatar_url = res.link;
+          this.userinfo.avatar = res.link;
         },
         err => { },
         () => {
