@@ -48,7 +48,7 @@ export class EditBlogComponent implements OnInit {
     // Set the image upload URL.
     imageUploadURL: API.UPLOAD_IMAGE,
     // Additional upload params.
-    imageUploadParams: { description: 'post_image' },
+    imageUploadParams: { description: 'blog_image' },
     // Set request type.
     imageUploadMethod: 'POST',
     // Set max image size to 5MB.
@@ -97,7 +97,7 @@ export class EditBlogComponent implements OnInit {
 
   onSubmit(data: BlogModel) {
     if (this.blog_image_file) {
-      this.commonService.upload_image(this.blog_image_file, 'blog image').subscribe(
+      this.commonService.upload_image(this.blog_image_file, 'blog feature').subscribe(
         (res: ImageModel) => {
           this.blog.image = `${environment.BASE_URL}${res.link}`;
         },
