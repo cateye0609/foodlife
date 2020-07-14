@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_extensions',
     'rest_framework',
+    'django_rest_passwordreset',
 
     'core',
     'authentication',
@@ -198,3 +199,14 @@ SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
     'fields': 'id, name, email'
 }
+
+# email
+
+EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'longtrd98@gmail.com'
+EMAIL_HOST_PASSWORD = 'loqxckmygljhertv'
+WEB_URL = "https://partybooking.000webhostapp.com/"
+

@@ -1,14 +1,19 @@
 from rest_framework import status, generics, mixins
-from rest_framework.generics import RetrieveUpdateAPIView
+from rest_framework.generics import RetrieveUpdateAPIView, UpdateAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django_rest_passwordreset.signals import reset_password_token_created
+from django.core.mail import EmailMultiAlternatives
+from django.dispatch import receiver
+from django.conf import settings
 
 from .renderers import UserJSONRenderer
 from .serializers import (
-    LoginSerializer, UserSerializer, RegistrationSerializer
+    LoginSerializer, UserSerializer, RegistrationSerializer, ChangePasswordSerializer
 )
 from profiles.models import Profile
+from ..models import User
 
 
 class RegistrationAPIView(APIView):
@@ -91,3 +96,45 @@ class UserRetrieveUpdateAPIView(RetrieveUpdateAPIView):
         serializer.save()
 
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class ChangePasswordView(UpdateAPIView):
+    serializer_class = ChangePasswordSerializer
+    model = User
+    permission_classes = (IsAuthenticated,)
+
+    def get_object(self, queryset=None):
+        obj = self.request.user
+        return obj
+
+    def update(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        serializer = self.get_serializer(data=request.data)
+
+        if serializer.is_valid():
+            if not self.object.check_password(serializer.data.get("old_password")):
+                return Response({"old_password": ["Wrong password."]}, status=status.HTTP_400_BAD_REQUEST)
+            self.object.set_password(serializer.data.get("new_password"))
+            self.object.save()
+            response = {
+                'status': 'success',
+            }
+
+            return Response(response, status=status.HTTP_200_OK)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class CustomPasswordResetView:
+    @receiver(reset_password_token_created)
+    def password_reset_token_created(sender, reset_password_token, *args, **kwargs):
+        msg = EmailMultiAlternatives(
+            # title:
+            "Password Reset for {}".format(reset_password_token.user.username),
+            # message:
+            "{}password-reset/{}".format(settings.WEB_URL, reset_password_token.key),
+            # from:
+            settings.EMAIL_HOST_USER,
+            # to:
+            [reset_password_token.user.email]
+        )
+        msg.send()
