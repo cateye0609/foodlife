@@ -4,6 +4,7 @@ export const API = {
     REGISTER: `${environment.API_URL}/users/`,
     PROFILE: `${environment.API_URL}/profiles/`,
     USER: `${environment.API_URL}/user/`,
+    SOCIALS: `${environment.API_URL}/auth/convert-token`,
 
     ARTICLES: `${environment.API_URL}/articles`,
     TOP_ARTICLES: `${environment.API_URL}/top-articles`,

@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 import { AuthenticationService } from '../auth.service';
+// Social login
+import { SocialAuthService } from "angularx-social-login";
+import { FacebookLoginProvider } from "angularx-social-login";
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,7 +16,9 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthenticationService,
-    private router: Router
+    private socialAuthService: SocialAuthService,
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -26,20 +33,26 @@ export class LoginComponent implements OnInit {
     this.authService.login(data.email, data.password);
   }
 
-  // login() {
-  //   window['FB'].login((response) => {
-  //     console.log('login response', response);
-  //     if (response.authResponse) {
-  //       window['FB'].api('/me', {
-  //         fields: 'last_name, first_name, email, name'
-  //       }, (userInfo) => {
-
-  //         console.log("user information");
-  //         console.log(userInfo);
-  //       });
-  //     } else {
-  //       console.log('User login failed');
-  //     }
-  //   }, { scope: 'email' });
-  // }
+  signInFB(): void {
+    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID).then(
+      (userdata) => {
+        this.authService.social_login('facebook', userdata.authToken).subscribe(
+          (res) => {
+            localStorage.setItem('access_token', res.access_token);
+            localStorage.setItem('token_type', res.token_type);
+            this.authService.get_userFbInfo().subscribe(
+              (res) => {
+                localStorage.setItem('token', res.user.token);
+                localStorage.setItem('username', res.user.username);
+                console.log(res);
+                this.toastr.success("Đăng nhập thành công!");
+                localStorage.removeItem('access_token');
+                this.router.navigate(['/home']);
+              }
+            )
+          }
+        );
+      }
+    );
+  }
 }

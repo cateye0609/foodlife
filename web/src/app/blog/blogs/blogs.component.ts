@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { BlogService } from '../blog.service';
 import { ToastrService } from 'ngx-toastr';
+import { AuthenticationService } from '../../auth/auth.service';
 
 import { BlogModel, BlogResponse, BlogCommentModel, CommentModel } from '../../_models/blog.model';
 
@@ -27,7 +28,8 @@ export class BlogsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private blogService: BlogService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private authService: AuthenticationService
   ) { }
 
   ngOnInit(): void {
@@ -72,15 +74,21 @@ export class BlogsComponent implements OnInit {
     )
   }
 
-  // Like bài viết
+  // Like và unline bài viết
   like_clicked() {
+    // Like
     if (this.blog.favorited == false) {
       this.blogService.like_blog(this.blog.slug).subscribe(
         (res) => {
           $(".heart").className("is-active");
+        },
+        err => {
+          if (!this.authService.is_loggedIn()) {
+            this.toastr.error("Bạn cần đăng nhập để thực hiện hành động này!");
+          }
         }
       )
-    } else {
+    } else { // Unlike
       this.blogService.unlike_blog(this.blog.slug).subscribe(
         (res) => {
           $(".heart").removeClass("is-active");

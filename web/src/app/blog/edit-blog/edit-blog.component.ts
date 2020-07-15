@@ -19,6 +19,7 @@ import { ToastrService } from 'ngx-toastr';
 export class EditBlogComponent implements OnInit {
 
   options: Object = {
+    language: 'vi',
     pastePlain: true,
     placeholderText: 'Edit your post here!',
     toolbarButtons: [

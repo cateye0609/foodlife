@@ -21,6 +21,7 @@ declare var $: any;
 export class CreateBlogComponent implements OnInit {
 
   options: Object = {
+    language: 'vi',
     pastePlain: true,
     placeholderText: 'Edit your post here!',
     toolbarButtons: [

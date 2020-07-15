@@ -45,7 +45,7 @@
             <span class="align-self-center font-weight-bold">{{blog?.favoritesCount}}</span>
           </div>
           <div class="blog-comment">
-            <h3>Comments ({{blog_comments?.commentsCount}})</h3>
+            <h3>Bình luận ({{blog_comments?.commentsCount}})</h3>
             <div class="single-comment"
               *ngFor="let comment of comments_list | paginate: { itemsPerPage: 3, currentPage: page }">
               <img src={{comment?.author?.avatar}} alt="avatar"
@@ -65,10 +65,10 @@
             </pagination-controls>
           </div>
           <form id="commentForm" #comment="ngForm" class="comment-form" (ngSubmit)="commentSubmit(comment.value)">
-            <h3>Leave a Comment</h3>
+            <h3>Để lại bình luận</h3>
             <div class="row">
               <div class="col-lg-12">
-                <textarea id="commentTextbox" name="content" placeholder="Nhập comment..." ngModel></textarea>
+                <textarea id="commentTextbox" name="content" rows="5" placeholder="Nhập comment..." ngModel></textarea>
               </div>
             </div>
             <button type="submit" form="commentForm" [disabled]="comment.invalid">Post</button>
