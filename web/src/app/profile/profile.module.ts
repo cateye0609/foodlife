@@ -8,12 +8,13 @@ import { ProfileComponent } from './profile/profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { UserinfoComponent } from './userinfo/userinfo.component';
 import { UsersListComponent } from './users-list/users-list.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 import { ProfileService } from './profile.service';
 
 
 @NgModule({
-  declarations: [ProfileComponent, EditProfileComponent, UserinfoComponent, UsersListComponent],
+  declarations: [ProfileComponent, EditProfileComponent, UserinfoComponent, UsersListComponent, ChangePasswordComponent],
   imports: [
     CommonModule,
     FormsModule,

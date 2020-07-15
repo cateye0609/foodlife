@@ -55,6 +55,18 @@ export class ProfileService {
             );
     }
 
+    // Đổi mật khẩu
+    change_password(body: string) {
+        let headers = new HttpHeaders({
+            'Authorization': `Token ${localStorage.getItem('token')}`,
+            'Content-type': 'application/x-www-form-urlencoded',
+        });
+        return this.http.put(API.CHANGE_PASSWORD, body, { headers: headers })
+            .pipe(
+                catchError(err => this.commonService.handleError(err, "Lỗi cập nhật mật khẩu!"))
+            );
+    }
+
     // Follow user
     follow_user(username: string) {
         let headers = new HttpHeaders({

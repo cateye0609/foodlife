@@ -33,12 +33,10 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
       useValue: {
         autoLogin: false,
         providers: [
-          // {
-          //   id: GoogleLoginProvider.PROVIDER_ID,
-          //   provider: new GoogleLoginProvider(
-          //     'clientId'
-          //   ),
-          // },
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider('254519135193-585o4ugkoon2kn5j0ptp4v44t1q8ltja.apps.googleusercontent.com'),
+          },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
             provider: new FacebookLoginProvider('271942560538861'),

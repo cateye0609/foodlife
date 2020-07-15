@@ -109,4 +109,16 @@ export class AuthenticationService {
     is_loggedIn() {
         return !!localStorage.getItem('token');
     }
+
+    // Reset password
+    reset_password(email: string) {
+        let headers = new HttpHeaders({
+            'Content-Type': 'application/x-www-form-urlencoded'
+        });
+        let body = `email=${email}`;
+        return this.http.post(`${API.PASSWORD_RESET}/`, body, { headers: headers })
+            .pipe(
+                catchError(err => this.commonService.handleError(err, "Lỗi trong lúc reset password!"))
+            );
+    }
 }
