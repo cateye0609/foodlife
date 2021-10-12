@@ -1,0 +1,14 @@
+.recipe-item img {
+    width: 100%;
+    height: 300px;
+}
+
+.top-recipe-text a {
+    margin-bottom: 0.25rem;
+}
+
+.top-recipe-text h6 {
+    color: #FC0254;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+}

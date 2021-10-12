@@ -1,0 +1,65 @@
+<body class="register-page">
+  <!-- Page Preloder -->
+  <div id="preloder">
+    <div class="loader"></div>
+  </div>
+  <section>
+    <div class="container h-100 pb-5">
+      <div class="row justify-content-center">
+        <div class="card-wrapper">
+          <div class="brand">
+            <a routerLink="/home"><img src="assets/img/logo/logo.png" alt="logo"></a>
+          </div>
+          <div class="card fat">
+            <div class="card-body">
+              <h4 class="card-title">Đăng ký</h4>
+              <form #register="ngForm" id="regForm" (ngSubmit)="onRegister(register.value)">
+                <div class="form-group">
+                  <label for="name">Username</label>
+                  <input id="name" type="text" class="form-control"
+                    [class.is-invalid]="usernameControl.invalid && usernameControl.dirty" name="username" required
+                    ngModel #usernameControl="ngModel" autofocus>
+                  <div class="invalid-feedback d-block" *ngIf="usernameControl.invalid && usernameControl.dirty">
+                    Username của bạn là gì?
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Địa chỉ email</label>
+                  <input id="email" type="email" class="form-control"
+                    [class.is-invalid]="emailControl.invalid && emailControl.dirty" name="email" required ngModel
+                    #emailControl="ngModel">
+                  <div class="invalid-feedback d-block" *ngIf="emailControl.invalid && emailControl.dirty">
+                    Email của bạn không hợp lệ
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="password">Mật khẩu</label>
+                  <input id="password" type="password" aria-describedby="passwordHelpBlock" minlength="8"
+                    class="form-control" [class.is-invalid]="passwordControl.invalid && passwordControl.dirty"
+                    name="password" required ngModel #passwordControl="ngModel" data-eye>
+                  <small id="passwordHelpBlock" class="form-text text-muted">
+                    Mật khẩu của bạn phải có ít nhất 8 ký tự
+                  </small>
+                  <div class="invalid-feedback d-block" *ngIf="passwordControl.invalid && passwordControl.dirty">
+                    Mật khẩu không hợp lệ
+                  </div>
+                </div>
+
+                <div class="form-group m-0">
+                  <button type="submit" form="regForm" class="btn btn-primary btn-block" [disabled]="register.invalid">
+                    Đăng ký
+                  </button>
+                </div>
+                <div class="mt-4 text-center">
+                  Bạn đã có tài khoản? <a routerLink="/user/login">Đăng nhập</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>

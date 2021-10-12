@@ -1,0 +1,409 @@
+<body>
+  <!-- Page Preloder -->
+  <div id="preloder" *ngIf="!loaded">
+    <div class="loader"></div>
+  </div>
+
+  <!-- Header Section Begin -->
+  <header class="header-section">
+    <div class="container">
+      <div class="logo">
+        <a routerLink="/home"><img src="assets/img/logo/brandname.png" alt=""></a>
+      </div>
+      <div class="nav-menu">
+        <nav class="main-menu mobile-menu">
+          <ul>
+            <li><a routerLink="/home">Trang chủ</a></li>
+            <li><a style="cursor: pointer;">Điều hướng</a>
+              <ul class="sub-menu">
+                <li><a routerLink="/feed">Feed</a></li>
+                <!-- <li><a routerLink="/categories">Categories</a></li> -->
+                <!-- <li><a routerLink="/recipes">Recipe</a></li> -->
+                <li><a routerLink="/blogs">Bài viết</a></li>
+                <li><a routerLink="/users-list">Tác giả</a></li>
+              </ul>
+            </li>
+            <li><a routerLink="/about">Thông tin</a></li>
+            <li *ngIf="!is_loggedIn"><a routerLink="/user/login">Đăng nhập</a></li>
+            <li *ngIf="is_loggedIn"><a routerLink="/user/profile">{{ username }}</a>
+              <ul class="sub-menu">
+                <li><a routerLink="/user/profile">Profile</a></li>
+                <li><a routerLink="/my-blog">Blog của tôi</a></li>
+                <li><a routerLink="/create-blog">Viết bài</a></li>
+                <li><a style="cursor: pointer;" (click)="logout()">Đăng xuất</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+        <div class="nav-right search-switch">
+          <i class="fa fa-search"></i>
+        </div>
+      </div>
+      <div id="mobile-menu-wrap"></div>
+    </div>
+  </header>
+  <!-- Header End -->
+
+  <!-- Page Top Recipe Section Begin -->
+  <section class="page-top-recipe">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 order-lg-2">
+          <div class="pt-recipe-item large-item">
+            <div class="pt-recipe-img" [style.background-image]="'url(' + blogs_list[0]?.image + ')'">
+              <i class="fa fa-plus"></i>
+            </div>
+            <div class="pt-recipe-text">
+              <span>{{blogs_list[0]?.createdAt | date: 'd MMMM, y'}}</span>
+              <a [routerLink]="['/blog/', blogs_list[0]?.slug || 'all']">
+                <h3 class="text-3line">{{blogs_list[0]?.title}}</h3>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 order-lg-1">
+          <div class="pt-recipe-item">
+            <div class="pt-recipe-img" [style.background-image]="'url(' + blogs_list[1]?.image + ')'">
+              <i class="fa fa-plus"></i>
+            </div>
+            <div class="pt-recipe-text">
+              <a [routerLink]="['/blog/', blogs_list[1]?.slug || 'all']">
+                <h4 class="text-2line">{{blogs_list[1]?.title}}</h4>
+              </a>
+            </div>
+          </div>
+          <div class="pt-recipe-item">
+            <div class="pt-recipe-img" [style.background-image]="'url(' + blogs_list[2]?.image + ')'">
+              <i class="fa fa-plus"></i>
+            </div>
+            <div class="pt-recipe-text">
+              <a [routerLink]="['/blog/', blogs_list[2]?.slug || 'all']">
+                <h4 class="text-2line">{{blogs_list[2]?.title}}</h4>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 order-lg-3">
+          <div class="pt-recipe-item">
+            <div class="pt-recipe-img" [style.background-image]="'url(' + blogs_list[3]?.image + ')'">
+              <i class="fa fa-plus"></i>
+            </div>
+            <div class="pt-recipe-text">
+              <a [routerLink]="['/blog/', blogs_list[3]?.slug || 'all']">
+                <h4 class="text-2line">{{blogs_list[3]?.title}}</h4>
+              </a>
+            </div>
+          </div>
+          <div class="pt-recipe-item">
+            <div class="pt-recipe-img" [style.background-image]="'url(' + blogs_list[4]?.image + ')'">
+              <i class="fa fa-plus"></i>
+            </div>
+            <div class="pt-recipe-text">
+              <a [routerLink]="['/blog/', blogs_list[3]?.slug || 'all']">
+                <h4 class="text-2line">{{blogs_list[4]?.title}}</h4>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Page Top Recipe Section End -->
+
+  <!-- Followed Author Section Begin -->
+  <section class="top-recipe spad" *ngIf="followed_authors_blogs?.length > 1">
+    <div class="section-title">
+      <h5>
+        <a routerLink="/feed">
+          Từ các tác giả đang theo dõi <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        </a>
+      </h5>
+    </div>
+    <div class="container po-relative">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="top-recipe-item large-item">
+            <div class="top-recipe-img" [style.background-image]="'url(' + followed_authors_blogs[0]?.image + ')'">
+              <i class="fa fa-plus"></i>
+            </div>
+            <div class="top-recipe-text">
+              <div *ngFor="let tag of followed_authors_blogs[0]?.tagList" style="display: inline-block;">
+                <div class="cat-name">
+                  <a [routerLink]="['/tag/',tag || 'all']">{{tag}}</a>
+                </div>
+              </div>
+              <a [routerLink]="['/blog/', followed_authors_blogs[0]?.slug || 'all']">
+                <h4 class="mb-0">{{followed_authors_blogs[0]?.title}}</h4>
+              </a>
+              <div class="meta">
+                <span><i class="fa fa-user"></i>
+                  <a [routerLink]="['/author/',followed_authors_blogs[0]?.author?.username || 'all']">
+                    {{followed_authors_blogs[0]?.author?.username}}
+                  </a>
+                </span>
+                <span><i
+                    class="fa fa-calendar-o"></i>{{followed_authors_blogs[0]?.createdAt | date: 'dd/MM/yyyy'}}</span>
+              </div>
+              <p class="text-2line">{{followed_authors_blogs[0]?.description}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="top-recipe-item" *ngFor="let blog of followed_authors_blogs.slice(1);let i=index">
+            <div class="row" *ngIf="i < 4">
+              <div class="col-sm-4">
+                <div class="top-recipe-img" [style.background-image]="'url(' + blog?.image + ')'">
+                  <i class="fa fa-plus"></i>
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <div class="top-recipe-text">
+                  <div *ngFor="let tag of blog?.tagList" style="display: inline-block;">
+                    <div class="cat-name">
+                      <a [routerLink]="['/tag/',tag || 'all']">{{tag}}</a>
+                    </div>
+                  </div>
+                  <a [routerLink]="['/blog/', blog?.slug || 'all']">
+                    <h4>{{blog?.title}}</h4>
+                  </a>
+                  <p class="text-2line">{{blog?.description}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Followed Author Section End -->
+
+  <!-- Top Like Section Begin -->
+  <section class="top-recipe spad">
+    <div class="section-title">
+      <h5>Các bài viết nhiều like nhất</h5>
+    </div>
+    <div class="container po-relative">
+      <!-- <div class="plus-icon">
+        <i class="fa fa-plus"></i>
+      </div> -->
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="top-recipe-item large-item">
+            <div class="top-recipe-img" [style.background-image]="'url(' + top_like_blogs[0]?.image + ')'">
+              <i class="fa fa-plus"></i>
+            </div>
+            <div class="top-recipe-text">
+              <div *ngFor="let tag of top_like_blogs[0]?.tagList" style="display: inline-block;">
+                <div class="cat-name">
+                  <a [routerLink]="['/tag/',tag || 'all']">{{tag}}</a>
+                </div>
+              </div>
+              <a [routerLink]="['/blog/', top_like_blogs[0]?.slug || 'all']">
+                <h4 class="mb-0">{{top_like_blogs[0]?.title}}</h4>
+              </a>
+              <div class="meta">
+                <span><i class="fa fa-user"></i>
+                  <a [routerLink]="['/author/',top_like_blogs[0]?.author?.username || 'all']">
+                    {{top_like_blogs[0]?.author?.username}}
+                  </a>
+                </span>
+                <span><i class="fa fa-calendar-o"></i>{{top_like_blogs[0]?.createdAt | date: 'dd/MM/yyyy'}}</span>
+              </div>
+              <p class="text-2line">{{top_like_blogs[0]?.description}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="top-recipe-item" *ngFor="let blog of top_like_blogs.slice(1)">
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="top-recipe-img" [style.background-image]="'url(' + blog?.image + ')'">
+                  <i class="fa fa-plus"></i>
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <div class="top-recipe-text">
+                  <div *ngFor="let tag of blog?.tagList" style="display: inline-block;">
+                    <div class="cat-name">
+                      <a [routerLink]="['/tag/',tag || 'all']">{{tag}}</a>
+                    </div>
+                  </div>
+                  <a [routerLink]="['/blog/', blog?.slug || 'all']">
+                    <h4>{{blog?.title}}</h4>
+                  </a>
+                  <p class="text-2line">{{blog?.description}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Top Recipe Section End -->
+
+  <!-- Top Comment Section Begin -->
+  <section class="top-recipe spad">
+    <div class="section-title">
+      <h5>Các bài viết nhiều comment nhất</h5>
+    </div>
+    <div class="container po-relative">
+      <!-- <div class="plus-icon">
+      <i class="fa fa-plus"></i>
+    </div> -->
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="top-recipe-item large-item">
+            <div class="top-recipe-img" [style.background-image]="'url(' + top_comment_blogs[0]?.image + ')'">
+              <i class="fa fa-plus"></i>
+            </div>
+            <div class="top-recipe-text">
+              <div *ngFor="let tag of top_comment_blogs[0]?.tagList" style="display: inline-block;">
+                <div class="cat-name">
+                  <a [routerLink]="['/tag/',tag || 'all']">{{tag}}</a>
+                </div>
+              </div>
+              <a [routerLink]="['/blog/', top_comment_blogs[0]?.slug || 'all']">
+                <h4 class="mb-0">{{top_comment_blogs[0]?.title}}</h4>
+              </a>
+              <div class="meta">
+                <span><i class="fa fa-user"></i>
+                  <a [routerLink]="['/author/',top_comment_blogs[0]?.author?.username || 'all']">
+                    {{top_comment_blogs[0]?.author?.username}}
+                  </a>
+                </span>
+                <span><i class="fa fa-calendar-o"></i>{{top_like_blogs[0]?.createdAt | date: 'dd/MM/yyyy'}}</span>
+              </div>
+              <p class="text-2line">{{top_comment_blogs[0]?.description}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="top-recipe-item" *ngFor="let blog of top_comment_blogs.slice(1)">
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="top-recipe-img" [style.background-image]="'url(' + blog?.image + ')'">
+                  <i class="fa fa-plus"></i>
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <div class="top-recipe-text">
+                  <div *ngFor="let tag of blog?.tagList" style="display: inline-block;">
+                    <div class="cat-name">
+                      <a [routerLink]="['/tag/',tag || 'all']">{{tag}}</a>
+                    </div>
+                  </div>
+                  <a [routerLink]="['/blog/', blog?.slug || 'all']">
+                    <h4>{{blog?.title}}</h4>
+                  </a>
+                  <p class="text-2line">{{blog?.description}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Top Comment Section End -->
+
+  <!-- Categories Filter Section Begin -->
+  <!-- <div class="categories-filter-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="filter-item">
+                        <ul>
+                            <li class="active" data-filter="*">Vegetarian</li>
+                            <li data-filter=".mostpopular">Most popular</li>
+                            <li data-filter=".meatlover">Meat Lover</li>
+                            <li data-filter=".glutenfree">Gluten Free</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="cf-filter" id="category-filter">
+                <div class="cf-item mix all mostpopular">
+                    <div class="cf-item-pic">
+                        <img src="assets/img/cate-filter/cate-filter-1.jpg" alt="">
+                    </div>
+                    <div class="cf-item-text">
+                        <h5>Sunday Brunch: Spaghetti and Eggs Recipe</h5>
+                    </div>
+                </div>
+                <div class="cf-item mix all mostpopular">
+                    <div class="cf-item-pic">
+                        <img src="assets/img/cate-filter/cate-filter-2.jpg" alt="">
+                    </div>
+                    <div class="cf-item-text">
+                        <h5>Sunday Brunch: Spaghetti and Eggs Recipe</h5>
+                    </div>
+                </div>
+                <div class="cf-item mix all meatlover mostpopular">
+                    <div class="cf-item-pic">
+                        <img src="assets/img/cate-filter/cate-filter-3.jpg" alt="">
+                    </div>
+                    <div class="cf-item-text">
+                        <h5>Sunday Brunch: Spaghetti and Eggs Recipe</h5>
+                    </div>
+                </div>
+                <div class="cf-item mix all meatlover">
+                    <div class="cf-item-pic glutenfree">
+                        <img src="assets/img/cate-filter/cate-filter-4.jpg" alt="">
+                    </div>
+                    <div class="cf-item-text">
+                        <h5>Sunday Brunch: Spaghetti and Eggs Recipe</h5>
+                    </div>
+                </div>
+                <div class="cf-item mix all meatlover glutenfree">
+                    <div class="cf-item-pic">
+                        <img src="assets/img/cate-filter/cate-filter-5.jpg" alt="">
+                    </div>
+                    <div class="cf-item-text">
+                        <h5>Sunday Brunch: Spaghetti and Eggs Recipe</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+  <!-- Categories Filter Section End -->
+
+  <!-- Feature Recipe Section Begin -->
+  <!-- <section class="feature-recipe">
+    <div class="section-title">
+      <h5>Featured Recipes</h5>
+    </div>
+    <div class="container po-relative">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="fr-item">
+            <div class="fr-item-img">
+              <img src="assets/img/feature-1.jpg" alt="">
+            </div>
+            <div class="fr-item-text">
+              <h4>Sunday Brunch: Spaghetti and Eggs Recipe</h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                ut labore et dolore magna aliqua.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="fr-item">
+            <div class="fr-item-img">
+              <img src="assets/img/feature-2.jpg" alt="">
+            </div>
+            <div class="fr-item-text">
+              <h4>Sunday Brunch: Spaghetti and Eggs Recipe</h4>
+              <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+                aliqua. Quis ipsum suspendisse ultrices gravida.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+  <!-- Feature Recipe Section End -->
+
+  <app-footer></app-footer>
+  <search-modal></search-modal>
+</body>

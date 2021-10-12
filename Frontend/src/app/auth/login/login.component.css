@@ -1,0 +1,128 @@
+body {
+    height: auto;
+}
+
+a {
+    color: #FC0254;
+}
+
+a:hover {
+    color: #009E30;
+}
+
+section {
+    width: 100%;
+    height: auto;
+    background: url('/assets/img/bg.jpg');
+    background-size: cover;
+}
+
+body.login-page {
+    background-color: #f7f9fb;
+    font-size: 14px;
+}
+
+.login-page .brand {
+    background-color: white;
+    padding: 0.8em;
+    width: 90px;
+    height: 90px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 40px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .05);
+    position: relative;
+    z-index: 1;
+}
+
+.login-page .brand img {
+    width: 100%;
+}
+
+.login-page .card-wrapper {
+    width: 400px;
+    margin-bottom: 2rem;
+}
+
+.login-page .card {
+    border-color: transparent;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .05);
+}
+
+.login-page .card.fat {
+    padding: 10px;
+}
+
+.login-page .card .card-title {
+    color: #FC0254;
+    margin-bottom: 30px;
+}
+
+.login-page .form-control {
+    border-width: 2.3px;
+}
+
+.login-page .form-group label {
+    width: 100%;
+}
+
+.login-page .btn.btn-block {
+    padding: 12px 10px;
+}
+
+.login-page .footer {
+    margin: 40px 0;
+    color: #888;
+    text-align: center;
+}
+
+.social-login .btn-group, .social-label {
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.social-login .btn-group a {
+    color: white;
+}
+
+.social-login .btn-group .btn-google {
+    background-color: #db3236;
+}
+
+.social-login .btn-group .btn-facebook {
+    background-color: #3b5998;
+}
+
+.social-login .btn-group .btn-twitter {
+    background-color: #00acee;
+}
+
+.social-login .btn-group .social-btn {
+    cursor: pointer;
+    width: 14em;
+}
+
+.social-login .btn-group .social-icon {
+    margin-left: 0.5em;
+}
+
+.social-login .btn-group .social-icon i {
+    width: 16px;
+    height: 20px
+}
+
+@media screen and (max-width: 425px) {
+    .login-page .card-wrapper {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .login-page .card.fat {
+        padding: 0;
+    }
+    .login-page .card.fat .card-body {
+        padding: 15px;
+    }
+}
